@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+.banner {
+  height: 100vh;
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
