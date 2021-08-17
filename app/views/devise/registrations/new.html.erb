@@ -1,5 +1,5 @@
- <div class="form-login-center" style="margin-top: 8em">
-  <h2>Sign up</h2>
+ <div class="form-login-center form-background" style="margin-top: 8em">
+  <h2>M'enrgistrer</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -8,14 +8,22 @@
       <%= f.input :email,
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "email" }%>
+                  input_html: { autocomplete: "email" },
+                  input_html: { class: "input-clr" },
+                  label_html: { class: "label-clr" } %>
       <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password" },
+                  label: "Mot de passe",
+                  input_html: { class: "input-clr" },
+                  label_html: { class: "label-clr" }  %>
       <%= f.input :password_confirmation,
                   required: true,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password" } ,
+                  label: "Confirmer ot de passe",
+                  input_html: { class: "input-clr" },
+                  label_html: { class: "label-clr" }  %>
     </div>
 
     <div class="form-actions">
