@@ -74,10 +74,14 @@ html_content_farm = URI.open(url_farm).read
 doc_farm = Nokogiri::HTML(html_content_farm)
 
 doc_farm.search('.item-name').each do |card_info|
-  # f = Farm.new()
-  # f.name = card_info.search('h3')
-  # f.address = card_info.search('.point-subtitle')
-  # f.save
-  puts card_info.search('a')['href']
-  puts card_info.search('span')[1].text
+  f = Farm.new()
+  f.name = card_info.search('span')[1].text
+  link = card_info.css('a').attribute('href')
+
+  html_content_details = URI.open(link).read
+  doc_details = Nokogiri::HTML(html_content_details)
+
+  f.address = doc_details.search('.company-info-details p').text
+  f.user_id = User.all.sample.id
+  f.save
 end
