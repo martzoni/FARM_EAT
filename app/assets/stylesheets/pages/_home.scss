@@ -1,1 +1,35 @@
 // Specific CSS for your home-page
+.banner {
+  height: 100vh;
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.text-on-image {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-weight: bold;
+  text-align: center;
+}
+
+.curvy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: flex-end;
+  margin-top: 20px;
+}
+
+.curvy-text {
+  font-family: 'Caveat', cursive;
+  color: white;
+  font-size: 34px;
+  text-shadow: 1px 3px 6px rgba(0,0,0,0.5);
+}

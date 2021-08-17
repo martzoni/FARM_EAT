@@ -1,0 +1,38 @@
+.btn-clr {
+  border: 0;
+  cursor: pointer;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff !important;;
+  text-transform: uppercase;
+  background-color: #01964e;
+  border-radius: 8px ;      
+  text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+  font-weight: 600;
+  font-family: "Poppins";
+  }  
+
+.btn-clr:hover {
+    text-decoration: none;
+    color: #fff !important;
+    background-color: #0fa05e;
+    
+    } 
+
+.fixed{
+  height: 48px;
+  width: 100%;
+}
+
+
+.moving {
+  padding: 8px 24px !important;
+}
+.orange {
+  background-color: #FF641B !important;
+}
+
+.orange:hover {
+  background-color: #f87436 !important;
+}

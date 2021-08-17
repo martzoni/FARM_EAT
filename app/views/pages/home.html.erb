@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= asset_url('vegetable.jpg')%>)">
+  <div>
+    <h1 class="text-on-image">Farm'Eat</h1>
+    <div class="form-wrapper mt-3">
+      <form class="cf">
+        <input type="text" placeholder="Lausanne, pomme, ..." required>
+        <button type="submit">Rechercher</button>
+      </form>
+        <h2 class="text-on-image py-2">ou</h2>
+        <%= link_to "Créer ma liste de courses", root_path, class: "btn-clr fixed" %>
+    </div>
+    <div class="curvy">
+      <p class="curvy-text mr-3">Mais comment ça marche ?</p>
+      <img src="<%= asset_url('arrow.png')%>" alt="" style=" width: 60px;">
+    </div>
+
+  </div>
+</div>
