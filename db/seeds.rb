@@ -11,13 +11,14 @@ require 'faker'
 
 # Start seeding
 puts "Cleaning database..."
-# Farm.destroy_all
+Farm.destroy_all
 User.destroy_all
 Product.destroy_all
 # Groceries.destroy_all
 # Stock.destroy_all
 
-# puts "Parsing for products..."
+# creating products
+puts "Parsing for products..."
 url_product = "https://www.conservation-nature.fr/food/fruits/"
 
 html_content_product = URI.open(url_product).read
@@ -56,7 +57,7 @@ puts "Creating 15 farmers..."
 
 15.times do
   user_name = Faker::Name.unique.first_name
-  puts user_name
+  # puts user_name
   user = User.new(
     name: user_name,
     email: "#{user_name}@hotmail.com",
@@ -66,8 +67,8 @@ puts "Creating 15 farmers..."
   user.save!
 end
 
-
-# puts "Parsing for farms..."
+# creating farms
+puts "Parsing for farms..."
 url_farm = "https://www.marchepaysan.ch/index.php/producteur"
 
 html_content_farm = URI.open(url_farm).read
@@ -82,6 +83,11 @@ doc_farm.search('.item-name').each do |card_info|
   doc_details = Nokogiri::HTML(html_content_details)
 
   f.address = doc_details.search('.company-info-details p').text
+  f.phone = doc_details.search('.company-info-details .phone a').text
+  f.email = doc_details.search('.company-info-details .email a').text
+  f.content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At numquam debitis, ex dolor nobis, tempora accusantium repudiandae quo vitae officia distinctio asperiores sed esse blanditiis iure sit, vero sapiente ea."
   f.user_id = User.all.sample.id
+  # puts f
   f.save
 end
+
