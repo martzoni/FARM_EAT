@@ -1,6 +1,17 @@
 class FarmsController < ApplicationController
   def index
     @farms = Farm.all
+    if params[:address] == nil || params[:address].empty?
+      @farms = Farm.all
+    else
+      @farms = Farm.near(params[:address], 10)
+    end
+    @markers = @farms.geocoded.map do |farm|
+      {
+        lat: farm.latitude,
+        lng: farm.longitude
+      }
+    end
   end
 
   def show
