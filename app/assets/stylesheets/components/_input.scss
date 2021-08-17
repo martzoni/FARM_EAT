@@ -1,0 +1,27 @@
+.input-clr {
+  height: 48px;
+  padding: 10px 5px;
+  font: bold 15px;
+  border: 0;
+  background: rgb(255, 255, 255);
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;   
+}
+
+.label-clr {
+  color: rgb(71, 71, 71);
+  font-weight: 300;
+}
+
+.form-background {
+  background-color: rgb(207, 238, 211);
+  padding: 50px;
+  border-radius: 16px;
+}
+
+.log-link > a {
+  color: #FF641B !important;
+  font-weight: 300;
+
+}
