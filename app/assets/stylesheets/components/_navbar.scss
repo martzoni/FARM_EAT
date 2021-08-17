@@ -3,6 +3,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
+  z-index: 99;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -11,4 +12,25 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.dropdown-menu {
+  background-color: #FF641B;
+  border-radius: 8px;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.dropdown-item {
+  color: white;
+  font-weight: 700;
+  font-family: "Poppins";
+}
+
+.dropdown-item:hover {
+  background-color: #f87436;
+  color: white;
+  font-weight: 700;
+  font-family: "Poppins";
 }
