@@ -82,11 +82,11 @@ doc_farm.search('.item-name').each do |card_info|
   html_content_details = URI.open(link).read
   doc_details = Nokogiri::HTML(html_content_details)
 
-  f.address = doc_details.search('.company-info-details p').text
-  f.phone = doc_details.search('.company-info-details .phone a').text
-  f.email = doc_details.search('.company-info-details .email a').text
+  f.address = doc_details.search('.company-info-details p').text.strip
+  f.phone = doc_details.search('.company-info-details .phone a').text.strip
   f.content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At numquam debitis, ex dolor nobis, tempora accusantium repudiandae quo vitae officia distinctio asperiores sed esse blanditiis iure sit, vero sapiente ea."
   f.user_id = User.all.sample.id
+  f.email = f.user.email
   # puts f
   f.save
 end
