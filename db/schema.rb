@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_150757) do
+ActiveRecord::Schema.define(version: 2021_08_17_073642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_08_16_150757) do
     t.string "web_site"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_farms_on_user_id"
   end
 
   create_table "groceries", force: :cascade do |t|
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_150757) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "farms", "users"
   add_foreign_key "groceries", "users"
   add_foreign_key "grocery_products", "groceries"
   add_foreign_key "grocery_products", "products"
