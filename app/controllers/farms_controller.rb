@@ -1,10 +1,15 @@
 class FarmsController < ApplicationController
+  
   def index
     @farms = Farm.all
   end
 
   def show
     @farm = Farm.find(params[:id])
+    @markers = [{
+      lat: @farm.latitude,
+      lng: @farm.longitude
+    }]
   end
 
   def new
@@ -15,7 +20,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
     @farm.user = current_user
     if @farm.save
-      redirect_to show_path(@farm)
+      redirect_to farm_path(@farm)
     else
       render :new
     end
