@@ -25,7 +25,7 @@ html_content_product = URI.open(url_product).read
 doc_product = Nokogiri::HTML(html_content_product)
 
 doc_product.search('.int-plante-tab h3').each do |element|
-  Product.new(name: element).save
+  Product.new(name: element.text.strip).save
 end
 
 # creating users
