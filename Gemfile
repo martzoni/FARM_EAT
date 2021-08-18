@@ -71,3 +71,6 @@ gem 'pundit'
 
 # Map & Geocoder
 gem 'geocoder'
+
+# Trubolinks with render
+gem 'turbolinks_render'

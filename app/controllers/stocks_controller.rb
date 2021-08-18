@@ -18,13 +18,12 @@ class StocksController < ApplicationController
   def create
     @stock = Stock.new(stock_params)
     @stock.farm = Farm.find(params[:farm_id])
-    if @stock.save
-			redirect_to new_farm_stock_path
-		else
-      @farm = Farm.find(params[:farm_id])
-      @products = Product.all
-			render :new
-		end
+    @stock.save
+    @stock = Stock.new()
+    @farm = Farm.find(params[:farm_id])
+    @products = Product.all
+		render :new
+
   end
 
   def destroy
