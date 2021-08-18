@@ -100,4 +100,5 @@ Farm.all.each do |farm|
       product_id: product.id
     ).save
   end
+  
 end
