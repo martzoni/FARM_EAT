@@ -41,7 +41,13 @@
     </div> 
   </div>
   <div>
-    <h2>Mes produits</h2>
+    <div class="d-flex justify-content-between" >
+    <% if @farm.user != current_user %>
+      <h2>Nous avons!</h2>
+    <% else %>  
+      <h2>Mes produits!</h2>
+      <%= link_to "Ajouter des produits", "#", method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-1'%>
+    <% end %>
   </div>
     <div class="my-4 show-info">
     <div style="width: 50%; padding: 40px;">

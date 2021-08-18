@@ -37,6 +37,16 @@ class FarmsController < ApplicationController
     end
   end
 
+  def destroy
+    @farm = Farm.find(params[:id])
+    @farm.destroy
+    redirect_to my_farms_path
+  end
+
+  def my_farms
+    @my_farms = current_user.farms
+  end
+
   private
 
   def farm_params

@@ -90,3 +90,26 @@
   padding: 20px;
 }
 
+.my-farm-info {
+  border-radius: 8px;
+  background-color: rgba(169, 169, 169, 0.116);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  padding: 40px;
+  margin-top: 40px;
+}
+
+.my-farm-info-card {
+  background-size: cover;
+  background-position: center;
+  height: 70px;
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
