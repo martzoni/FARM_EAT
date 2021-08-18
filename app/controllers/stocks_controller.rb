@@ -1,6 +1,5 @@
 class StocksController < ApplicationController
   before_action :find_stock, only: [:show]
-  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @stocks = Stock.all

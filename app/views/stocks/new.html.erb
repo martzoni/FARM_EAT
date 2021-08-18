@@ -1,13 +1,15 @@
-<div class="container" style="margin-top: 200px;">  
-  <%= simple_form_for [@farm, @stock], method: "post" do |f| %>
-    <%= f.association :product, label: "Produit", collection: @products-@farm.products %>
-    <%= f.submit "Envoyer", class: "btn btn-clr", id: "submit-button" %>
+<div class="container form-background" style="margin-top: 70px;">  
+  <%= simple_form_for [@farm, @stock], class: "d-flex justify-centers", method: "post" do |f| %>
+    <%= f.association :product, label: false, collection: @products-@farm.products, input_html: { class: "input-clr" } %>
+    <%= f.submit "Ajouter", class: "btn btn-clr", id: "submit-button" %>
   <% end %>
 
-  <ul>
-      <% @farm.products.each do |product| %>
-        <li><<%= product.name %>/li>
-      <% end %>
-  </ul>
+  
+  <div class="mt-2">
+  <% @farm.products.each do |product| %>
+    <p><%= product.name %></p>
+  <% end %>
+  </div>
+  
 
 </div>
