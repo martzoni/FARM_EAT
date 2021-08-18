@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_111643) do
+ActiveRecord::Schema.define(version: 2021_08_18_091722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2021_08_17_111643) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "distances", force: :cascade do |t|
+    t.float "km"
+    t.float "minutes"
+    t.bigint "farm_a_id"
+    t.bigint "farm_b_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farm_a_id"], name: "index_distances_on_farm_a_id"
+    t.index ["farm_b_id"], name: "index_distances_on_farm_b_id"
   end
 
   create_table "farms", force: :cascade do |t|
@@ -101,6 +112,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_111643) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "distances", "farms", column: "farm_a_id"
+  add_foreign_key "distances", "farms", column: "farm_b_id"
   add_foreign_key "farms", "users"
   add_foreign_key "groceries", "users"
   add_foreign_key "grocery_products", "groceries"
