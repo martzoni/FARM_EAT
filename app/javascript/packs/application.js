@@ -41,3 +41,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
 });
+
+// map scroll effect
+import { onScroll } from '../plugins/on_scroll';
+

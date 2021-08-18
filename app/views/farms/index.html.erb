@@ -1,0 +1,32 @@
+<div id="map"
+     style="width: 100%; height: 55vh; position: fixed; top: 0px; z-index: 9; transition: 0.2s;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+     class="d-flex justify-content-center align-items-end">
+  <div class="form-wrapper mb-3 form-map">
+    <form class="cf" action="/farms">
+      <input type="text" placeholder="Lausanne, pomme, ...">
+      <button type="submit">Rechercher</button>
+    </form>  
+  </div>
+</div>
+<div class="container mx-auto" id="farm-list" style="margin-top: 60vh; transition: 0.2s;">
+  <h1 class="my-5 list-title"><%= @farms.size %> points de vente trouvés</h1>
+  
+  <div class="row">
+    <% @farms.each do |farm| %>
+      <div class="co-12 colsm-6 col-md-4 mb-3">
+        <%= link_to farm_path(farm, debut: params[:debut], fin: params[:fin]), class:'text-decoration-none' do %>
+          <div class="card-trip">
+            <div class="card-trip-img" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(<%= farm.photo.attached? ? cl_image_path(farm.photo.key) : asset_path('list_background.png') %>)">
+            </div>
+            <div class="card-trip-infos ">
+              <h2><%= farm.name.capitalize %></h2>
+              <p><%= farm.content %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

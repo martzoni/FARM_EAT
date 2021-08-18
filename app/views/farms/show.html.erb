@@ -1,0 +1,45 @@
+<div class="img-show" style="background-image: linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.20)), url(<%= @farm.photo.attached? ? cl_image_path(@farm.photo.key) : asset_path('list_background.png') %>)">
+    <h1><%= @farm.name.capitalize %></h1>
+</div>
+
+
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between" >
+    <%= link_to "Retour à la liste", request.referer.present? ? request.referer : farms_path, class: "btn btn-clr btn-lg"  %>
+    <% if @farm.user == current_user %>
+      <%= link_to "Supprimer", farm_path(@farm), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange'%>
+    <% end %>
+    <% if @farm.user == current_user %>
+      <%= link_to "Mettre à jour la ferme!",  edit_farm_path(@farm), class: "btn btn-clr orange" %>
+    <% end %>
+  </div>
+  <div class="my-4 show-info">
+    <div style="width: 50%; padding: 40px;">
+    <% if @farm.user != current_user %>
+      <h2>Details de la ferme</h2>
+    <% else %>  
+      <h2>Voici ma ferme!</h2>
+    <% end %>
+    
+      <h6 class="mt-2"><strong>Nom : </strong><%= @farm.name.capitalize %></h6>
+      <h6 class="mt-2"><strong>Email : </strong><%= @farm.email %></h6>
+      <h6 class="mt-2"><strong>Site web : </strong><%= @farm.web_site %></h6>
+      <h6 class="mt-2"><strong>Horaires d'ouverture : </strong><%= @farm.open_hours %></h6>
+      <h6 class="mt-2"><strong>Point de vente : </strong><%= @farm.address %></h6>
+      <p class="mt-5"><strong>Déscription : </strong><%= @farm.content %></p>
+
+    </div>
+    <div id="map"
+      style="width: 50%; min-height: 50vh; border-radius: 0px 8px 8px 0px;"
+      data-markers=<%= @markers.to_json %>
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div> 
+  </div>
+  <div>
+    <h2>Mes produits</h2>
+  </div>
+    <div class="my-4 show-info">
+    <div style="width: 50%; padding: 40px;">
+  </div> 
+</div>
