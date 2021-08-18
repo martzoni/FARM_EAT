@@ -91,3 +91,14 @@ doc_farm.search('.item-name').each do |card_info|
   f.save
 end
 
+# creating stock
+puts "generating stocks"
+Farm.all.each do |farm|
+  Product.all.sample(10 + rand(30)).each do |product|
+    Stock.new(
+      farm_id: farm.id,
+      product_id: product.id
+    ).save
+  end
+  
+end
