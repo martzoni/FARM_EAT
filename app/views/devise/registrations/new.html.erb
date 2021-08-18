@@ -1,5 +1,5 @@
  <div class="form-login-center form-background" style="margin-top: 8em">
-  <h2>M'enrgistrer</h2>
+  <h2>M'enregistrer</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -24,6 +24,9 @@
                   label: "Confirmer ot de passe",
                   input_html: { class: "input-clr" },
                   label_html: { class: "label-clr" }  %>
+      <%= f.input :is_farmer,
+                  label: "Je suis un fermier",
+                  input_html: { autocomplete: "is_responder" }%>
     </div>
 
     <div class="form-actions">

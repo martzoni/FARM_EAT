@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 <div class="container form-background" style="margin-top: 70px; max-width: 480px;">  
   <%= simple_form_for [@farm, @stock], class: "d-flex justify-centers", method: "post", remote: true do |f| %>
+=======
+
+
+
+
+<div class="container form-background" style="margin-top: 70px;">  
+  <%= simple_form_for [@farm, @stock], class: "d-flex justify-centers", method: "post" do |f| %>
+>>>>>>> master
     <%= f.association :product, label: false, collection: @products-@farm.products, input_html: { class: "input-clr" } %>
     <%= f.submit "Ajouter", class: "btn btn-clr", id: "submit-button" %>
   <% end %>
@@ -10,6 +19,8 @@
     <p><%= product.name %></p>
   <% end %>
   </div>
-  
+</div>
 
+<div class="mt-5">
+  <%= link_to "Retour à la liste", request.referer.present? ? request.referer : my_farms_path, class: "btn btn-clr"  %>
 </div>

@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   
 
 
-    get :my_farms, to: 'farms#my_farms'
+  get :my_farms, to: 'farms#my_farms'
 end

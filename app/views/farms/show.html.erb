@@ -46,10 +46,13 @@
       <h2>Nous avons!</h2>
     <% else %>  
       <h2>Mes produits!</h2>
-      <%= link_to "Ajouter des produits", "#", method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-1'%>
     <% end %>
+      <%= link_to "Gerer ses produits", new_farm_stock_path(@farm), class: 'btn btn-clr orange mr-1'%>
   </div>
     <div class="my-4 show-info">
-    <div style="width: 50%; padding: 40px;">
+    <div style="width: 100%; padding: 30px;">
+      <% @farm.products.each do |product| %>
+        <span class="product-tag"><%= product.name %></span>
+      <% end %>
   </div> 
 </div>
