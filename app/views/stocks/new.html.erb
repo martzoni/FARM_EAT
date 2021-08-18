@@ -13,5 +13,5 @@
 </div>
 
 <div class="mt-5">
-  <%= link_to "Retour à la liste", request.referer.present? ? request.referer : my_farms_path, class: "btn btn-clr"  %>
+  <%= link_to "Retour à la ferme", farm_path(@farm), class: "btn btn-clr"  %>
 </div>
