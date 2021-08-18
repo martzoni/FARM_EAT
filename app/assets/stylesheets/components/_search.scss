@@ -82,7 +82,7 @@ overflow: visible;
 
 .form-wrapper button:active,
 .form-wrapper button:focus{   
-  background: #c42f2f;    
+  background: #0fa05e;    
 }
 
 .form-wrapper button:before {
@@ -100,8 +100,8 @@ overflow: visible;
 }
 
 .form-wrapper button:focus:before{
-  border-right-color: #c42f2f;
-}    
+  border-right-color: #0fa05e;
+}
 
 .form-wrapper button::-moz-focus-inner {
   border: 0;

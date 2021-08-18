@@ -1,0 +1,13 @@
+<div class="container" style="margin-top: 200px;">  
+  <%= simple_form_for [@farm, @stock], method: "post" do |f| %>
+    <%= f.association :product, label: "Produit", collection: @products-@farm.products %>
+    <%= f.submit "Envoyer", class: "btn btn-clr", id: "submit-button" %>
+  <% end %>
+
+  <ul>
+      <% @farm.products.each do |product| %>
+        <li><<%= product.name %>/li>
+      <% end %>
+  </ul>
+
+</div>
