@@ -36,3 +36,8 @@
 .orange:hover {
   background-color: #f87436 !important;
 }
+
+.bar-add-delete-edit {
+  display: flex;
+  justify-content: space-between;
+}

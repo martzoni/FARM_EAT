@@ -6,13 +6,17 @@
 
 <div class="container my-5">
   <div class="d-flex justify-content-between" >
-    <%= link_to "Retour à la liste", request.referer.present? ? request.referer : farms_path, class: "btn btn-clr btn-lg"  %>
-    <% if @farm.user == current_user %>
-      <%= link_to "Supprimer", farm_path(@farm), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange'%>
-    <% end %>
-    <% if @farm.user == current_user %>
-      <%= link_to "Mettre à jour la ferme!",  edit_farm_path(@farm), class: "btn btn-clr orange" %>
-    <% end %>
+    <div>
+      <%= link_to "Retour à la liste", request.referer.present? ? request.referer : farms_path, class: "btn btn-clr btn-lg"  %>
+    </div>
+    <div class="d-flex justify-content-end">
+      <% if @farm.user == current_user %>
+        <%= link_to "Supprimer", farm_path(@farm), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-1'%>
+      <% end %>
+      <% if @farm.user == current_user %>
+        <%= link_to "Mettre à jour la ferme!",  edit_farm_path(@farm), class: "btn btn-clr orange" %>
+      <% end %>
+    </div>
   </div>
   <div class="my-4 show-info">
     <div style="width: 50%; padding: 40px;">
@@ -37,7 +41,13 @@
     </div> 
   </div>
   <div>
-    <h2>Mes produits</h2>
+    <div class="d-flex justify-content-between" >
+    <% if @farm.user != current_user %>
+      <h2>Nous avons!</h2>
+    <% else %>  
+      <h2>Mes produits!</h2>
+      <%= link_to "Ajouter des produits", "#", method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-1'%>
+    <% end %>
   </div>
     <div class="my-4 show-info">
     <div style="width: 50%; padding: 40px;">
