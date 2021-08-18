@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   end
   
   resources :groceries
+<<<<<<< HEAD
   
 
+=======
+
+    get :my_farms, to: 'farms#my_farms'
+>>>>>>> master
 end

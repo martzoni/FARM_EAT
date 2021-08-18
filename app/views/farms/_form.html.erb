@@ -1,0 +1,19 @@
+<div class="container mx-auto" style="margin-top: 8em" >
+  <h1 class="mb-4">Ma ferme!</h1>
+    <div class="container mx-auto">
+    <%= simple_form_for @farm do |f| %>
+      <div class="personal-information">
+        <h2>Information de la ferme</h2>
+        <%= f.input :name, label: "Nom du bateau" %>
+        <%= f.input :address, label: "Point de vente" %>
+        <%= f.input :phone, label: "Téléphone" %>
+        <%= f.input :open_hours, label: "Horaire d'ouverture" %>
+        <%= f.input :content, label: "Description de la ferme" %>
+        <%= f.input :web_site, label: "Site web" %>
+        <%= f.input :photo, as: :file %>
+
+        <%= f.button :submit, "Enregistrer!", class: "btn btn-clr btn-lg"%>
+      </div>
+    </div>
+  <% end %>
+</div>
