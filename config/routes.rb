@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :farms
   resources :groceries
 
-    get :my_farms, to: 'farms#my_farms'
+  get :my_farms, to: 'farms#my_farms'
 end

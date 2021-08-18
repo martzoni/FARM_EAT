@@ -15,7 +15,7 @@ Farm.destroy_all
 User.destroy_all
 Product.destroy_all
 # Groceries.destroy_all
-# Stock.destroy_all
+Stock.destroy_all
 
 # creating products
 puts "Parsing for products..."
