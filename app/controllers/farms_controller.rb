@@ -37,6 +37,16 @@ class FarmsController < ApplicationController
     end
   end
 
+  def edit
+    @farm = Farm.find(params[:id])
+  end
+
+  def update
+    @farm = Farm.find(params[:id])
+    @farm.update(farm_params)
+    redirect_to farm_path(@farm)
+  end
+
   def destroy
     @farm = Farm.find(params[:id])
     @farm.destroy
