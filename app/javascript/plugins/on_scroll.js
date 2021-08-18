@@ -1,4 +1,5 @@
-document.getElementById("map").onmouseover = function() {mouseOver()};
+if (document.getElementById("map")) {
+  document.getElementById("map").onmouseover = function() {mouseOver()};
 
 function mouseOver() {
   document.getElementById("map").style.height = "55vh";
@@ -13,5 +14,5 @@ function scrollFunction() {
     document.getElementById("farm-list").style.marginTop = "35vh";
     
   }
-}
+}}
     
