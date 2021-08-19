@@ -1,0 +1,21 @@
+<div class="container form-background" style="margin-top: 70px; max-width: 480px;">  
+  <%= simple_form_for [@grocery, @grocery_product], method: "post", remote: true do |f| %>
+    <%= f.association :product, label: false, collection: @products-@grocery.products, input_html: { class: "input-search" } %>
+    <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
+  <% end %>
+
+  
+  <div class="list-background">
+  <h5>Ma liste de course</h5>
+  <% @grocery.products.order(:name).each do |product| %>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="product-name"><%= product.name %></p>
+      <%= link_to "❌", grocery_path(@grocery), class: "cross"  %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<div class="mt-5">
+  <%= link_to "Retour à la ferme", grocery_path(@grocery), class: "btn btn-clr w50"  %>
+</div>
