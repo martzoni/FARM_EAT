@@ -6,6 +6,7 @@ class GroceriesController < ApplicationController
 
   def show
     @grocery = Grocery.find(params[:id])
+    
   end
 
   def new
@@ -27,4 +28,22 @@ class GroceriesController < ApplicationController
   def grocery_params
   params.require(:grocery).permit()
   end
+
+  # black magic (Everysky)
+  # def available_farms(products_list)
+  #   farms = []
+  #   Farm.all.each do |f|
+  #     found = false
+  #     count = 0
+  #     until found == true || count == f.products.size do
+  #       # puts count
+  #       found = true if f.products.include?(products_list[count])
+  #       count += 1
+  #       # puts found
+  #       # puts farms
+  #     end
+  #     farms << f if found == true
+  #   end
+  #   return farms
+  # end
 end
