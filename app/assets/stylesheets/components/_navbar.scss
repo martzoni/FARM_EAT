@@ -15,11 +15,13 @@
 }
 
 .dropdown-menu {
-  background-color: #FF641B;
+  background-color: #f87436be;
   border-radius: 8px;
   color: white;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-color: #f87436;
+  border-width: 3px;
 }
 
 .dropdown-item {
@@ -33,4 +35,5 @@
   color: white;
   font-weight: 700;
   font-family: "Poppins";
+
 }

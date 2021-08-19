@@ -1,13 +1,17 @@
 <div class="container form-background" style="margin-top: 70px; max-width: 480px;">  
-  <%= simple_form_for [@farm, @stock], class: "d-flex justify-centers", method: "post", remote: true do |f| %>
-    <%= f.association :product, label: false, collection: @products-@farm.products, input_html: { class: "input-clr" } %>
-    <%= f.submit "Ajouter", class: "btn btn-clr", id: "submit-button" %>
+  <%= simple_form_for [@farm, @stock], method: "post", remote: true do |f| %>
+    <%= f.association :product, label: false, collection: @products-@farm.products, input_html: { class: "input-search" } %>
+    <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
   <% end %>
 
   
-  <div class="mt-2">
+  <div class="list-background">
+  <h5>Mes produits en stocks</h5>
   <% @farm.products.order(:name).each do |product| %>
-    <p><%= product.name %></p>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="product-name"><%= product.name %></p>
+      <%= link_to "❌", farm_path(@farm), class: "cross"  %>
+    </div>
   <% end %>
   </div>
 </div>
