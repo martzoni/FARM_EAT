@@ -10,14 +10,15 @@ class GroceriesController < ApplicationController
   end
 
   def new
-    @grocery = Grocery.new
+    @grocery = Grocery.new()
   end
 
   def create
-    @grocery = Grocery.new(grocery_params)
-    @grocery.user = current_user if user_signed_in?
+    @grocery = Grocery.new()
+    @grocery.user = current_user
+    @start_address = @grocery.user.address
     if @grocery.save
-      redirect_to show_path(@grocery)
+      redirect_to new_grocery_grocery_product_path(@grocery)
     else
       render :new
     end
