@@ -5,7 +5,7 @@
      class="d-flex justify-content-center align-items-end">
   <div class="form-wrapper mb-3 form-map">
     <form class="cf" action="/farms">
-      <input type="text" placeholder="Lausanne, pomme, ...">
+      <input name="address" type="text" placeholder="Lausanne, pomme, ..." value=<%= params[:address]%>>
       <button type="submit">Rechercher</button>
     </form>  
   </div>
