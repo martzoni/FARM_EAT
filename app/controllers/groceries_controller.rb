@@ -1,5 +1,5 @@
 class GroceriesController < ApplicationController
-
+  # load '../algorithms/get_a_path.rb'
   def index
     @groceries = Grocery.all
   end

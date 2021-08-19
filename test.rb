@@ -14,5 +14,3 @@ if code == "Ok"
   puts "#{km} km"
   puts "#{min} minutes"
 end
-puts MAPBOX_API_KEY
-
