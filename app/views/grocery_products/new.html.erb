@@ -1,11 +1,11 @@
 <div class="container form-background" style="margin-top: 70px; max-width: 480px;">  
   <%= simple_form_for [@grocery, @grocery_product], method: "post", remote: true do |f| %>
-    <%= f.association :product, label: false, collection: @products-@grocery.products, input_html: { class: "input-search" } %>
+    <%= f.association :product, label: false, prompt: 'Ajouter un produit', collection: @products-@grocery.products, input_html: { class: "input-search" } %>
     <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
   <% end %>
 
   
-  <div class="list-background">
+  <div class="list-background mb-3">
   <h5>Ma liste de course</h5>
   <% @grocery.products.order(:name).each do |product| %>
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -14,8 +14,8 @@
     </div>
   <% end %>
   </div>
-</div>
-
-<div class="mt-5">
-  <%= link_to "Retour à la ferme", grocery_path(@grocery), class: "btn btn-clr w50"  %>
+    <%= simple_form_for [@grocery], method: "patch", remote: true do |f| %>
+      <%= f.input :start_address, placeholder: 'Lieu de départ', label: false, input_html: { class: "input-clr" } %>
+      <%= f.submit "Enregistrer", class: "btn btn-clr fixed", id: "submit-button" %>
+    <% end %>
 </div>
