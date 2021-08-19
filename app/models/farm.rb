@@ -11,7 +11,7 @@ class Farm < ApplicationRecord
     farms = []
     Farm.all.each do |farm|
     #      ou
-    # self.all.each do |f|
+    # self.all.each do |farm|
       found = false
       index = 0
       until found == true || index == grocery_products_list.size do
@@ -30,5 +30,9 @@ class Farm < ApplicationRecord
     # self.products.intersection(grocery_products_list)
     #       mais Alain m'a conseillé de faire cette requete SQL (beaucoup plus rapide)
     self.products.where("products.id in (?)", grocery_products_list.map(&:id))
+  end
+
+  def coordonnees()
+    [self.longitude, self.latitude]
   end
 end
