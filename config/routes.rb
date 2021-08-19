@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :stocks
   end
   
-  resources :groceries
-  
-
+  resources :groceries do
+    resources :grocery_products
+  end
 
   get :my_farms, to: 'farms#my_farms'
 end

@@ -5,6 +5,13 @@
   flex-grow: 1;
 }
 
+#new_grocery_product {
+  display: flex ;
+}
+.grocery_product_product {
+  flex-grow: 1;
+}
+
 .input-search {
   height: 48px;
   padding: 10px 5px;
