@@ -1,1 +1,24 @@
-<h1>Index list</h1>
+<div class="container" style="margin-top: 8em">
+    </div>
+    <div class="container mx-auto" id="farm-list" style="">
+      <h1 class="my-5 list-title"><%= @my_groceries.size %> Mes achats</h1>
+    </div>
+
+    <div class="container" style="margin-top: 2em">
+      <% @my_groceries.each do |list| %>
+        <div class="my-farm-info my-4 ">
+          <div class="d-flex justify-content-start align-items-center">
+            <div>
+            <%= list.created_at %>
+            </div>
+            <div class="mt-3">
+              <h4 class="mt-2"><strong>Mes produits : </strong><%= list.id %></h6>
+              <% list.products.each do |product| %>
+                <span class="product-tag"><%= product.name %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

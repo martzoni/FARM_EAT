@@ -2,6 +2,7 @@ class GroceriesController < ApplicationController
 
   def index
     @groceries = Grocery.all
+    @my_groceries = current_user.groceries
   end
 
   def show
@@ -21,6 +22,10 @@ class GroceriesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def my_groceries
+    @my_groceries = current_user.groceries
   end
 
   private
