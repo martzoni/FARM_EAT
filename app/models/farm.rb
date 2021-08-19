@@ -7,32 +7,20 @@ class Farm < ApplicationRecord
   has_one_attached :photo
 
   # black magic (Everysky)
-  def self.available_farms(products_list)
+  def self.available_farms(grocery_products_list)
     farms = []
     Farm.all.each do |farm|
     #      ou
     # self.all.each do |f|
-      puts "farm"
-      puts farm
       found = false
       index = 0
-      farm_products = farm.products.to_a
-      puts farm_products.map{ |e| e.name}
-      puts "-----list-----"
-      puts products_list.map{ |e| e.name}
-      # puts products_list.size
-      until found == true || index == products_list.size do
-        # puts "hello"
-        # puts index
-        found = true if farm_products.include?(products_list[index])
+      until found == true || index == grocery_products_list.size do
+        found = true if farm.products.where(id: grocery_products_list[index].id).any?
+        # puts grocery_products_list[index].name if found
+        # puts farm.id if found
         index += 1
-        # puts found
-        # puts farms
       end
-      puts "-----"
-      puts found
-      farms << farm if found == true
-      # puts farms
+      farms << farm if found
     end
     return farms
   end
