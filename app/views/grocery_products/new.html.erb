@@ -14,8 +14,15 @@
     </div>
   <% end %>
   </div>
+
     <%= simple_form_for [@grocery], method: "patch", remote: true do |f| %>
       <%= f.input :start_address, placeholder: 'Lieu de départ', label: false, input_html: { class: "input-clr", value: params[:start_address]} %>
       <%= f.submit "Enregistrer", class: "btn btn-clr fixed", id: "submit-button" %>
     <% end %>
+
+</div>
+
+<div class="container d-flex justify-content-start" style="margin-top: 70px" >
+  <%= link_to "Mes commandes", "#", class: "btn btn-clr btn-lg" %>
+
 </div>

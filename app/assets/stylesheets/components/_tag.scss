@@ -1,7 +1,9 @@
 .product-tag {
   color: #1C354C;
-  border: 1px solid #1c354c7c;
+  border: 2px solid #ff631b83 !important;
   border-radius: 20px;
   padding: 0.3rem 0.6rem;
   margin: 5px;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
