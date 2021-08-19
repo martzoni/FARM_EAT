@@ -5,7 +5,7 @@ class FarmsController < ApplicationController
     if params[:address] == nil || params[:address].empty?
       @farms = Farm.all
     else
-      @farms = Farm.near(params[:address], 10)
+      @farms = Farm.near(params[:address], 25)
     end
     @markers = @farms.geocoded.map do |farm|
       {
