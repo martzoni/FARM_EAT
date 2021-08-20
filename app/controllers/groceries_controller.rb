@@ -24,10 +24,16 @@ class GroceriesController < ApplicationController
     end
   end
 
+  def update
+    @grocery = Grocery.find(params[:id])
+    @grocery.update(grocery_params)
+    redirect_to grocery_path(@grocery)
+  end
+
   private
 
   def grocery_params
-  params.require(:grocery).permit()
+  params.require(:grocery).permit(:start_address)
   end
   
   # def distance_mapbox(coord_a, coord_b)
