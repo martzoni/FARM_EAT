@@ -2,6 +2,7 @@ class GroceriesController < ApplicationController
   # load '../algorithms/get_a_path.rb'
   def index
     @groceries = Grocery.all
+    @my_groceries = current_user.groceries
   end
 
   def show
@@ -27,11 +28,15 @@ class GroceriesController < ApplicationController
       render :new
     end
   end
-
+  
   def update
     @grocery = Grocery.find(params[:id])
     @grocery.update(grocery_params)
     redirect_to grocery_path(@grocery)
+  end
+
+  def my_groceries
+    @my_groceries = current_user.groceries
   end
 
   private
