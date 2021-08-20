@@ -27,11 +27,14 @@ class GroceryProductsController < ApplicationController
   end
 
   def destroy
-    @grocery_product = GroceryProduct.find(params[:id])
+    @grocery_product = GroceryProduct.where(grocery_id: params[:grocery_id]).where(product_id: params[:id]).first
     @grocery_product.destroy
+    redirect_to new_grocery_grocery_product_path
   end
 
-  private 
+  
+
+  private
 
   def find_stock
     @grocery_product = GroceryProduct.find(params[:id])
