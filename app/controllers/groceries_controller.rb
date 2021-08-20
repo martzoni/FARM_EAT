@@ -7,11 +7,7 @@ class GroceriesController < ApplicationController
 
   def show
     @grocery = Grocery.find(params[:id])
-    # list de course
-    @grocery_product_list = @grocery.available_products
-    @trajet = []
-    start_coordoonees = @grocery.start_address
-    @trajet << 
+    @trajet = @grocery.get_a_path
   end
 
   def new

@@ -32,7 +32,7 @@ class Farm < ApplicationRecord
     self.products.where("products.id in (?)", grocery_products_list.map(&:id))
   end
 
-  def coordonnees()
+  def coordinates()
     [self.longitude, self.latitude]
   end
 end
