@@ -14,7 +14,7 @@ puts "Cleaning database..."
 Farm.destroy_all
 User.destroy_all
 Product.destroy_all
-# Groceries.destroy_all
+Grocery.destroy_all
 Stock.destroy_all
 
 # creating products
@@ -84,9 +84,16 @@ doc_farm.search('.item-name').each do |card_info|
 
   f.address = doc_details.search('.company-info-details p').text.strip
   f.phone = doc_details.search('.company-info-details .phone a').text.strip
-  f.content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At numquam debitis, ex dolor nobis, tempora accusantium repudiandae quo vitae officia distinctio asperiores sed esse blanditiis iure sit, vero sapiente ea."
+  attributes = doc_details.search('.listing-attributes')
+  content_attributes = attributes.map do |att|
+    "#{att.search('.attribute-name').text.strip.delete "\r"} #{att.search('.attribute-item').text.strip.delete "\r"}"
+  end
+  f.content = content_attributes.join("\r")
+  # f.content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At numquam debitis, ex dolor nobis, tempora accusantium repudiandae quo vitae officia distinctio asperiores sed esse blanditiis iure sit, vero sapiente ea."
   f.user_id = User.all.sample.id
   f.email = f.user.email
+  file = URI.open('http://loremflickr.com/800/600/farm')
+  f.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
   # puts f
   f.save
 end

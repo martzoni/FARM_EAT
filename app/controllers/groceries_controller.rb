@@ -9,7 +9,7 @@ class GroceriesController < ApplicationController
 
   def show
     @grocery = Grocery.find(params[:id])
-    @trajet = @grocery.get_a_path
+    # @trajet = @grocery.get_a_path
   end
 
   def new
@@ -59,6 +59,12 @@ class GroceriesController < ApplicationController
     else
       return nil
     end
+  end
+
+  def mapboox_url_pour_trajet(trajet)
+    trajet_string = trajet.map{|a| "#{a[0]},#{a[1]}"}.join(";")
+    url_trajet = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving/#{trajet_string}?geometries=geojson&roundtrip=false&source=first&destination=last&access_token=pk.eyJ1IjoibWFydHpvbmkiLCJhIjoiY2tyZzVnN2dxMmdqczJ6cDhxOHIyb2t5MSJ9.4pVoyR4PxS3ONhaEGw0xug"
+    return url_trajet
   end
 
 end
