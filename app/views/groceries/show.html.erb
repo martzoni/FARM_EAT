@@ -1,0 +1,11 @@
+<div class="mt-5 container">
+  <h3><%= @grocery.id %># <%= @grocery.start_address %></h3>
+  <ul>
+  <% @grocery.products.each do |product|%>
+    <li>
+      <%= product.name %>
+    </li>
+  <% end %>
+  </ul>
+
+</div>
