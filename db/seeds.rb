@@ -101,3 +101,24 @@ Farm.all.each do |farm|
     ).save
   end
 end
+
+# generating a grocery
+puts "creating groceries"
+5.times do
+  # creer une course
+  grocery = Grocery.new(
+    user_id: User.all.sample.id,
+    start_address: ["Pl. de la Navigation 3, 1006 Lausanne", "Bouveret1897 Port-Valais", "Quai Perdonnet 19, 1800 Vevey", "Quai de Cologny 1, 1223 Cologny", "12C Chemin de beree, 1010 Lausanne", "Chemin des Esserts 5, 1024 Ecublens", "Place de la Palud 2 · 1003 Lausanne", "Rue du Simplon 16, 1800 Vevey", "Case Postale 1125, 1001 Lausanne", "Ouchy 60, 1006 Lausanne", "Grand' Rue 73, 1820 Montreux", "Av. de la Gare 33, 1618 Châtel-Saint-Denis", "Rte de Lausanne 16, 1052 Le Mont-sur-Lausanne", "Pl. de l'Hôtel-de-Ville 1, 1110 Morges", "Pl. du Château 3, 1260 Nyon"].sample,
+    end_address: ["Pl. de la Navigation 3, 1006 Lausanne", "Bouveret1897 Port-Valais", "Quai Perdonnet 19, 1800 Vevey", "Quai de Cologny 1, 1223 Cologny", "12C Chemin de beree, 1010 Lausanne", "Chemin des Esserts 5, 1024 Ecublens", "Place de la Palud 2 · 1003 Lausanne", "Rue du Simplon 16, 1800 Vevey", "Case Postale 1125, 1001 Lausanne", "Ouchy 60, 1006 Lausanne", "Grand' Rue 73, 1820 Montreux", "Av. de la Gare 33, 1618 Châtel-Saint-Denis", "Rte de Lausanne 16, 1052 Le Mont-sur-Lausanne", "Pl. de l'Hôtel-de-Ville 1, 1110 Morges", "Pl. du Château 3, 1260 Nyon"].sample
+  ).save
+  # y ajouter des produits
+  products = Product.all.sample(5)
+  grocery = Grocery.all.last
+  products.each do |p|
+    GroceryProduct.new(
+      grocery_id: grocery.id,
+      product_id: p.id
+    ).save
+  end
+end
+
