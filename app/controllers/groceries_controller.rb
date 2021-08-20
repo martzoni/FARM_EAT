@@ -25,7 +25,7 @@ class GroceriesController < ApplicationController
 
   def create
   end
-  
+
   def update
     @grocery = Grocery.find(params[:id])
     @grocery.update(grocery_params)
