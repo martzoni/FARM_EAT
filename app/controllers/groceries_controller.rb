@@ -1,5 +1,7 @@
 class GroceriesController < ApplicationController
   # load '../algorithms/get_a_path.rb'
+  before_action :authenticate_user!, only: [:new, :create, :my_groceries]
+
   def index
     @groceries = Grocery.all
     @my_groceries = current_user.groceries
@@ -12,10 +14,6 @@ class GroceriesController < ApplicationController
 
   def new
     @grocery = Grocery.new()
-  end
-
-  def create
-    @grocery = Grocery.new()
     @grocery.user = current_user
     @start_address = @grocery.user.address
     if @grocery.save
@@ -24,7 +22,10 @@ class GroceriesController < ApplicationController
       render :new
     end
   end
-  
+
+  def create
+  end
+
   def update
     @grocery = Grocery.find(params[:id])
     @grocery.update(grocery_params)

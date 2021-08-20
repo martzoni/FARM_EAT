@@ -32,8 +32,6 @@ class GroceryProductsController < ApplicationController
     redirect_to new_grocery_grocery_product_path
   end
 
-  
-
   private
 
   def find_stock
