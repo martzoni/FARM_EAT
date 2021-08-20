@@ -23,15 +23,15 @@ class StocksController < ApplicationController
     @farm = Farm.find(params[:farm_id])
     @products = Product.all
 		render :new
-
   end
 
   def destroy
-    @stock = Stock.find(params[:id])
+    @stock = Stock.where(farm_id: params[:farm_id]).where(product_id: params[:id]).first
     @stock.destroy
+    redirect_to new_farm_stock_path
   end
 
-  private 
+  private
 
   def find_stock
     @stock = Stock.find(params[:id])
