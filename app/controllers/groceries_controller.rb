@@ -23,6 +23,12 @@ class GroceriesController < ApplicationController
       render :new
     end
   end
+  
+  def update
+    @grocery = Grocery.find(params[:id])
+    @grocery.update(grocery_params)
+    redirect_to grocery_path(@grocery)
+  end
 
   def my_groceries
     @my_groceries = current_user.groceries
@@ -31,6 +37,6 @@ class GroceriesController < ApplicationController
   private
 
   def grocery_params
-  params.require(:grocery).permit()
+  params.require(:grocery).permit(:start_address)
   end
 end
