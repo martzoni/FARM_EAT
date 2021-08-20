@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   get :my_farms, to: 'farms#my_farms'
+  get :my_groceries, to: 'groceries#my_groceries'
 end
