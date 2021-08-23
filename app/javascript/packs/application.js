@@ -25,6 +25,9 @@ require("channels")
 // External imports
 import "bootstrap";
 
+// map scroll effect
+import { onScroll } from '../plugins/on_scroll';
+
 import { initAutocomplete } from '../plugins/init_autocomplete';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
