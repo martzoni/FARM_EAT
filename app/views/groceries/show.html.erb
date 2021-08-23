@@ -1,21 +1,9 @@
-<div class="mt-5 container">
-  <h3><%= @grocery.id %># <%= @grocery.start_address %></h3>
+<% markers = [[6.373300938261586, 46.6743794], [6.177820977711894,46.40861365], [6.445665966333003, 46.6824071], [6.5252453, 46.6113262], [6.9334427, 46.2881923]]  %>
 
-  <ul>
-  <% @grocery.products.each do |product|%>
-    <li>
-      <%= product.name %>
-    </li>
-  <% end %>
-  </ul>
-
-</div>
-
-<% markers = [[6.373300938261586, 46.6743794], [6.177820977711894,46.40861365], [6.445665966333003, 46.6824071], [6.5252453, 46.6113262]]  %>
 
 <div id="map2"
      style="width: 100%; height: 80vh; ; z-index: 9; transition: 0.2s;"
-     data-markers='[[6.373300938261586, 46.6743794], [6.177820977711894,46.40861365], [6.445665966333003, 46.6824071], [6.5252453, 46.6113262], [6.9334427, 46.2881923]]'
+     data-markers='<%= markers %>'
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
      class="d-flex justify-content-center align-items-end">
 </div>

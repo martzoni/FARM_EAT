@@ -5,7 +5,6 @@ const initJourneyMapbox = () => {
   if (mapElement) {
     // var farmArray = (mapElement.dataset.markers);
     var farmArray = $(mapElement).data('markers')
-    console.log(farmArray.slice(1, -1));
     var startPoint = farmArray[0];
     var endPoint = farmArray.slice(-1)[0];
     var farms = farmArray.slice(1, -1);
@@ -25,8 +24,6 @@ const initJourneyMapbox = () => {
     var map = new mapboxgl.Map({
       container: 'map2', // container id
       style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-      center: startPoint, // starting position
-      zoom: 8 // starting zoom
     });
 
     var warehouse = turf.featureCollection([turf.point(endPoint)]);
@@ -47,20 +44,22 @@ const initJourneyMapbox = () => {
         .addTo(map);
 
       // Create a circle layer
-      map.addLayer({
-        id: 'warehouse',
-        type: 'circle',
-        source: {
-          data: warehouse,
-          type: 'geojson'
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': 'white',
-          'circle-stroke-color': '#3887be',
-          'circle-stroke-width': 3
-        }
-      });
+      // map.addLayer({
+      //   id: 'warehouse',
+      //   type: 'circle',
+      //   source: {
+      //     data: warehouse,
+      //     type: 'geojson'
+      //   },
+      //   paint: {
+      //     'circle-radius': 10,
+      //     'circle-color': 'white',
+      //     'circle-stroke-color': '#01964e',
+      //     'circle-stroke-width': 3
+      //   }
+      // });
+
+    
 
       // Create a symbol layer on top of circle layer
       map.addLayer({
@@ -71,11 +70,12 @@ const initJourneyMapbox = () => {
           type: 'geojson'
         },
         layout: {
-          'icon-image': 'rail',
+          'icon-image': 'embassy-15',
           'icon-size': 1
         },
         paint: {
-          'text-color': '#3887be'
+          'text-color': '#01964e',
+          'icon-color': '#00ff00'
         }
       });
 
@@ -89,7 +89,7 @@ const initJourneyMapbox = () => {
         layout: {
           'icon-allow-overlap': true,
           'icon-ignore-placement': true,
-          'icon-image': 'marker-15'
+          'icon-image': 'shop-15'
         }
       });
 
@@ -108,7 +108,7 @@ const initJourneyMapbox = () => {
             'line-cap': 'round'
           },
           paint: {
-            'line-color': '#3887be',
+            'line-color': '#01964e',
             'line-width': ['interpolate', ['linear'], ['zoom'], 12, 3, 22, 12]
           }
         },
@@ -144,7 +144,7 @@ const initJourneyMapbox = () => {
             'text-keep-upright': false
           },
           paint: {
-            'text-color': '#3887be',
+            'text-color': '#01964e',
             'text-halo-color': 'hsl(55, 11%, 96%)',
             'text-halo-width': 3
           }
@@ -158,6 +158,11 @@ const initJourneyMapbox = () => {
         updateDropoffs(dropoffs);
       });
 
+      //center map on journey
+      const bounds = new mapboxgl.LngLatBounds();
+      console.log(farmArray)
+      farmArray.forEach(farm => bounds.extend([ farm[0], farm[1] ]));
+      map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 
       // Listen for a click on the map
       // map.on('click', function (e) {
@@ -238,6 +243,7 @@ const initJourneyMapbox = () => {
       });
       return routeGeoJSON;
     }
+    
 
   }
 };
