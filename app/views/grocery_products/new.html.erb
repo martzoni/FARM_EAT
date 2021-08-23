@@ -16,7 +16,7 @@
   </div>
 
     <%= simple_form_for [@grocery], method: "patch", remote: true do |f| %>
-      <%= f.input :start_address, placeholder: 'Lieu de départ', label: false, input_html: { class: "input-clr", value: params[:start_address]} %>
+      <%= f.input :start_address, placeholder: 'Lieu de départ', label: false, input_html: { class: "input-clr", id: "address-input" , value: params[:start_address]} %>
       <%= f.submit "Enregistrer", class: "btn btn-clr fixed", id: "submit-button" %>
     <% end %>
 
