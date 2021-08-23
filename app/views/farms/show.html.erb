@@ -48,7 +48,7 @@
     <% else %>  
       <h2>Mes produits!</h2>
     <% end %>
-    <% if current_user.is_farmer %>
+    <% if current_user == @farm.user %>
       <%= link_to "Gerer ses produits", new_farm_stock_path(@farm), class: 'btn btn-clr orange mr-1'%>
     <% end %>
   </div>
