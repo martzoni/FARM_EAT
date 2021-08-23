@@ -42,6 +42,12 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
 });
 
+import { initJourneyMapbox } from '../plugins/journey_mapbox';
+
+document.addEventListener('turbolinks:load', () => {
+  initJourneyMapbox();
+});
+
 // map scroll effect
 import { onScroll } from '../plugins/on_scroll';
 
