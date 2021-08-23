@@ -50,7 +50,4 @@ document.addEventListener('turbolinks:load', () => {
   initJourneyMapbox();
 });
 
-// map scroll effect
-import { onScroll } from '../plugins/on_scroll';
-
 
