@@ -3,9 +3,12 @@ import mapboxgl from 'mapbox-gl';
 const initJourneyMapbox = () => {
   const mapElement = document.getElementById('map2');
   if (mapElement) {
-    var truckLocation = [6.373300938261586, 46.6743794];
-    var warehouseLocation = [6.9334427, 46.2881923];
-    var farms = [[6.177820977711894,46.40861365], [6.445665966333003, 46.6824071], [6.5252453, 46.6113262]]
+    // var farmArray = (mapElement.dataset.markers);
+    var farmArray = $(mapElement).data('markers')
+    console.log(farmArray.slice(1, -1));
+    var startPoint = farmArray[0];
+    var endPoint = farmArray.slice(-1)[0];
+    var farms = farmArray.slice(1, -1);
     var lastQueryTime = 0;
     var lastAtRestaurant = 0;
     var keepTrack = [];
@@ -21,12 +24,12 @@ const initJourneyMapbox = () => {
     // Initialize a map
     var map = new mapboxgl.Map({
       container: 'map2', // container id
-      style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
-      center: truckLocation, // starting position
+      style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+      center: startPoint, // starting position
       zoom: 8 // starting zoom
     });
 
-    var warehouse = turf.featureCollection([turf.point(warehouseLocation)]);
+    var warehouse = turf.featureCollection([turf.point(endPoint)]);
 
     // Create an empty GeoJSON feature collection for drop off locations
     var dropoffs = turf.featureCollection([]);
@@ -40,9 +43,8 @@ const initJourneyMapbox = () => {
 
       // Create a new marker
       var truckMarker = new mapboxgl.Marker(marker)
-        .setLngLat(truckLocation)
+        .setLngLat(startPoint)
         .addTo(map);
-      console.log(truckMarker)
 
       // Create a circle layer
       map.addLayer({
@@ -69,7 +71,7 @@ const initJourneyMapbox = () => {
           type: 'geojson'
         },
         layout: {
-          'icon-image': 'ranger-station',
+          'icon-image': 'rail',
           'icon-size': 1
         },
         paint: {
@@ -152,7 +154,6 @@ const initJourneyMapbox = () => {
 
       // generate journey
       farms.forEach((farm) => {
-        console.log(farm)
         newDropoff({lat:farm[1], lng:farm[0]});
         updateDropoffs(dropoffs);
       });
@@ -214,11 +215,11 @@ const initJourneyMapbox = () => {
     function assembleQueryURL() {
       // Store the location of the truck in a variable called coordinates
       var coordinates = [];
-      coordinates.push(truckLocation);
+      coordinates.push(startPoint);
       farms.forEach((farm) => {
         coordinates.push(farm)
       });
-      coordinates.push(warehouseLocation);
+      coordinates.push(endPoint);
 
 
 
