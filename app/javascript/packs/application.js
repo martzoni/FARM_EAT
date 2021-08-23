@@ -25,13 +25,12 @@ require("channels")
 // External imports
 import "bootstrap";
 
+// map scroll effect
+import { onScroll } from '../plugins/on_scroll';
+
+import { initAutocomplete } from '../plugins/init_autocomplete';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
 
 // CSS
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -39,7 +38,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
+  // Call your functions here, e.g:
+  // initSelect2();
+});
+
+document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initAutocomplete();
 });
 
 import { initJourneyMapbox } from '../plugins/journey_mapbox';
@@ -50,4 +55,5 @@ document.addEventListener('turbolinks:load', () => {
 
 // map scroll effect
 import { onScroll } from '../plugins/on_scroll';
+
 
