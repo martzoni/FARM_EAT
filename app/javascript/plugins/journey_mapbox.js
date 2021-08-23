@@ -4,6 +4,7 @@ const initJourneyMapbox = () => {
   const mapElement = document.getElementById('map2');
   if (mapElement) {
     // var farmArray = (mapElement.dataset.markers);
+    console.log(mapElement.dataset.markers)
     var farmArray = $(mapElement).data('markers')
     var startPoint = farmArray[0];
     var endPoint = farmArray.slice(-1)[0];
