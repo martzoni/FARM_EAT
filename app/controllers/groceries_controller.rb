@@ -9,7 +9,7 @@ class GroceriesController < ApplicationController
 
   def show
     @grocery = Grocery.find(params[:id])
-    # @trajet = @grocery.get_a_path
+    @trajet = @grocery.get_a_path
   end
 
   def new

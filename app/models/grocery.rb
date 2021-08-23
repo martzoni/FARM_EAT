@@ -52,7 +52,11 @@ class Grocery < ApplicationRecord
       # puts "------------"
     end
     # puts "fin de boucle"
-    end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
+    if self.end_address == nil
+      end_coodinates = start_coordinates
+    else
+      end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
+    end
     trajet << end_coodinates
     return trajet
   end
