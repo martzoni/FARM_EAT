@@ -21,3 +21,5 @@
 # end
 
 # Stock.where(farm_id: params[:farm_id]).where(product_id: params[:id]).first
+
+puts Grocery.all.sample.get_a_path
