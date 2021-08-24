@@ -2,6 +2,7 @@
     <h1><%= @farm.name.capitalize %></h1>
 </div>
 
+<div id="map2" class="contain"></div>
 
 
 <div class="container my-5">
@@ -35,7 +36,7 @@
 
     </div>
     <div id="map"
-      style="width: 50%; min-height: 50vh; border-radius: 0px 8px 8px 0px;"
+      style="width: 50%; min-height: 100%; border-radius: 0px 8px 8px 0px;"
       data-markers=<%= @markers.to_json %>
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div> 
@@ -47,7 +48,9 @@
     <% else %>  
       <h2>Mes produits!</h2>
     <% end %>
+    <% if current_user == @farm.user %>
       <%= link_to "Gerer ses produits", new_farm_stock_path(@farm), class: 'btn btn-clr orange mr-1'%>
+    <% end %>
   </div>
     <div class="my-4 show-info">
     <div style="width: 100%; padding: 20px; flex-wrap: nowrap | wrap | wrap-reverse;">
