@@ -34,7 +34,7 @@ class GroceriesController < ApplicationController
     @grocery = Grocery.find(params[:id])
     @grocery.assign_attributes(grocery_params)
     if @grocery.start_address.empty?
-      redirect_to new_grocery_grocery_product_path(@grocery)
+      redirect_to new_grocery_grocery_product_path(@grocery), notice: "Merci de renseigner l'adresse de depart!"
     else
       @grocery.update(grocery_params)
       redirect_to grocery_path(@grocery)
