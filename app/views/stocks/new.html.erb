@@ -6,7 +6,7 @@
 
 <div class="container form-background mt-1" style="margin-top: 70px; max-width: 480px;">  
   <%= simple_form_for [@farm, @stock], method: "post", remote: true do |f| %>
-    <%= f.association :product, label: false, collection: @products-@farm.products, input_html: { class: "input-search" } %>
+    <%= f.association :product, label: false, collection: @products.order(:name)-@farm.products.order(:name), input_html: { class: "input-search" } %>
     <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
   <% end %>
 
