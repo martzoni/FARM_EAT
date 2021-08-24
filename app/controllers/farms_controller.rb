@@ -35,6 +35,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
     @farm.user = current_user
     if @farm.save
+      Distance.tying_up_with_the_others(@farm)
       redirect_to farm_path(@farm)
     else
       render :new
