@@ -16,12 +16,14 @@ class Grocery < ApplicationRecord
   def get_a_path
     # list de course initiale
     grocery_product_list = self.available_products
+    unavailable_products = self.products - grocery_product_list
     # liste de travail des produits restant à acheter 
     products_left_to_buy = grocery_product_list
     puts "produits à acheter: #{products_left_to_buy.count}"
     puts products_left_to_buy.map{ |a| a.name}
     # liste de travail qui va stocker les achats aux differentes fermes
     list_achats = []
+    list_farms = []
     # liste de travail qui stockera la suites de coordonnees
     trajet = []
     puts self.start_address
@@ -39,6 +41,8 @@ class Grocery < ApplicationRecord
       trajet << farm.coordinates_2 unless farm.coordinates_2 == nil
       puts "trajet: #{trajet.count}"
       puts trajet
+      # add farm id to list of farms
+      list_farms << farm.id
       # buy all you need
       achats = farm.buy_all_products_needed(products_left_to_buy)
       puts "achats: #{achats.count}"
@@ -59,7 +63,8 @@ class Grocery < ApplicationRecord
       end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
     end
     trajet << end_coodinates
-    return trajet
+    resultat = [trajet, list_farms, list_achats, unavailable_products]
+    return resultat
   end
 
   def get_best_path
