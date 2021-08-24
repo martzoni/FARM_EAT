@@ -32,8 +32,13 @@ class GroceriesController < ApplicationController
 
   def update
     @grocery = Grocery.find(params[:id])
-    @grocery.update(grocery_params)
-    redirect_to grocery_path(@grocery)
+    @grocery.assign_attributes(grocery_params)
+    if @grocery.start_address.empty?
+      redirect_to new_grocery_grocery_product_path(@grocery)
+    else
+      @grocery.update(grocery_params)
+      redirect_to grocery_path(@grocery)
+    end
   end
 
   def my_groceries
