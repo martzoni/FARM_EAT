@@ -1,7 +1,6 @@
 class Farm < ApplicationRecord
   belongs_to :user
   has_many :stocks, dependent: :destroy
-  # has_many :distances, dependent: :destroy
   has_many :products, through: :stocks
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -78,7 +77,7 @@ class Farm < ApplicationRecord
 
   
       # verification que l'adresse est valide
-      if farm_a.coordinates == nil
+      if farm_a.coordinates_2 == nil
         puts "in here"
         farm_a.destroy
         puts "invalid address"
