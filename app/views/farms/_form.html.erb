@@ -1,19 +1,29 @@
-<div class="container mx-auto" style="margin-top: 8em" >
-  <h1 class="mb-4">Ma ferme!</h1>
-    <div class="container mx-auto">
-    <%= simple_form_for @farm do |f| %>
-      <div class="personal-information">
-        <h2>Information de la ferme</h2>
-        <%= f.input :name, label: "Nom de la ferme" %>
-        <%= f.input :address, label: "Adresse du point de vente", input_html: { id: "address-input"} %>
-        <%= f.input :phone, label: "Téléphone" %>
-        <%= f.input :open_hours, label: "Horaire d'ouverture" %>
-        <%= f.input :content, label: "Description de la ferme" %>
-        <%= f.input :web_site, label: "Site web" %>
-        <%= f.input :photo, as: :file %>
+<div class="container mx-auto" style="margin-top: 8em; max-width: 60%;" >
+  <%= simple_form_for @farm do |f| %>
+    <div class="form-background">
+      <h2 class="mb-3">Modifier ma ferme</h2>
+      <%= f.input :name, label: "Nom de la ferme",
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
+      <%= f.input :address, label: "Adresse du point de vente", input_html: { id: "address-input", class: "input-clr"},
+                label_html: { class: "label-clr" } %>
+      <%= f.input :phone, label: "Téléphone",
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
+      <%= f.input :open_hours, label: "Horaire d'ouverture",
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
+      <%= f.input :content, label: "Description de la ferme",
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
+      <%= f.input :web_site, label: "Site web",
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
+      <%= f.input :photo, as: :file,
+                input_html: { class: "input-clr" },
+                label_html: { class: "label-clr" } %>
 
-        <%= f.button :submit, "Enregistrer!", class: "btn btn-clr btn-lg"%>
-      </div>
+      <%= f.button :submit, "Enregistrer!", class: "btn btn-clr btn-lg w-100"%>
     </div>
   <% end %>
 </div>
