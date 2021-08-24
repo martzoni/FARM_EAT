@@ -12,7 +12,7 @@ class Farm < ApplicationRecord
 
   # black magic (Everysky)
   def self.available_farms(grocery_products_list)
-    farms = []
+    result_farms = []
     Farm.all.each do |farm|
     #      ou
     # self.all.each do |farm|
@@ -24,9 +24,25 @@ class Farm < ApplicationRecord
         # puts farm.id if found
         index += 1
       end
-      farms << farm if found
+      result_farms << farm if found
     end
-    return farms
+    return result_farms
+  end
+
+  def self.available_farms_in_range(grocery_products_list, farms)
+    result_farms = []
+    farms.each do |farm|
+      found = false
+      index = 0
+      until found == true || index == grocery_products_list.size do
+        found = true if farm.products.where(id: grocery_products_list[index].id).any?
+        # puts grocery_products_list[index].name if found
+        # puts farm.id if found
+        index += 1
+      end
+      result_farms << farm if found
+    end
+    return result_farms
   end
 
   def buy_all_products_needed(grocery_products_list)
@@ -85,13 +101,13 @@ class Farm < ApplicationRecord
   
       # verification que l'adresse est valide
       if farm_a.coordinates_2 == nil
-        puts "in here"
+        # puts "in here"
         farm_a.destroy
-        puts "invalid address"
+        # puts "invalid address"
       else
-        puts "address is valid. proceeding..."
+        # puts "address is valid. proceeding..."
         # creating stock
-        Stock.generating_random(farm_a)
+        Stock.generating_random(farm_a, (30..60))
         # creating distances
         Distance.tying_up_with_the_others(farm_a)
       end
