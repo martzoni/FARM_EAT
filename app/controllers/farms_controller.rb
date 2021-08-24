@@ -35,6 +35,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
     @farm.user = current_user
     if @farm.save
+      Distance.tying_up_with_the_others(@farm)
       redirect_to farm_path(@farm)
     else
       render :new
@@ -47,9 +48,16 @@ class FarmsController < ApplicationController
 
   def update
     @farm = Farm.find(params[:id])
-    @farm.update(farm_params)
+    if farm_params[:address] != @farm.address
+      @farm.update(farm_params)
+      @farm.distances.each{ |e| e.destroy}
+      Distance.tying_up_with_the_others(@farm)
+    else
+      @farm.update(farm_params)
+    end
     redirect_to farm_path(@farm)
   end
+
 
   def destroy
     @farm = Farm.find(params[:id])

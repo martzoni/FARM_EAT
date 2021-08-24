@@ -44,6 +44,9 @@ class Farm < ApplicationRecord
     end
   end
 
+  def distances
+    self.farm_a_distances.to_a.union(self.farm_b_distances.to_a)
+  end  
   require 'open-uri'
   require 'nokogiri'
 
