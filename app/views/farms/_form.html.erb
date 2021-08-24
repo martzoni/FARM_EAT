@@ -4,8 +4,8 @@
     <%= simple_form_for @farm do |f| %>
       <div class="personal-information">
         <h2>Information de la ferme</h2>
-        <%= f.input :name, label: "Nom du bateau" %>
-        <%= f.input :address, label: "Point de vente" %>
+        <%= f.input :name, label: "Nom de la ferme" %>
+        <%= f.input :address, label: "Adresse du point de vente", input_html: { id: "address-input"} %>
         <%= f.input :phone, label: "Téléphone" %>
         <%= f.input :open_hours, label: "Horaire d'ouverture" %>
         <%= f.input :content, label: "Description de la ferme" %>
