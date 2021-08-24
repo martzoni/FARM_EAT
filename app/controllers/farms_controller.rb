@@ -2,11 +2,14 @@ class FarmsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   
   def index
-    @farms = Farm.all
     if params[:address] == nil || params[:address].empty?
       @farms = Farm.all
-    else
+    elsif !Farm.find_by("address ILIKE ?", "%#{params[:address]}%").nil?
       @farms = Farm.near(params[:address], 25)
+    elsif Product.find_by("name ILIKE ?",  "%#{params[:address]}%")
+      @farms = Product.find_by("name ILIKE ?",  "%#{params[:address]}%").farms
+    else
+      @farms = Farm.all
     end
     @markers = @farms.geocoded.map do |farm|
       {
