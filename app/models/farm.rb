@@ -1,6 +1,10 @@
 class Farm < ApplicationRecord
   belongs_to :user
   has_many :stocks, dependent: :destroy
+  has_many :farm_a_distances, :class_name => "Distance", :foreign_key => "farm_a_id", dependent: :destroy
+  has_many :farm_b_distances, :class_name => "Distance", :foreign_key => "farm_b_id", dependent: :destroy
+  # has_many :distances, :foreign_key => "farm_a_id", :class_name => "Distance", dependent: :destroy
+  # has_many :distances, :foreign_key => "farm_b_id", :class_name => "Distance", dependent: :destroy
   has_many :products, through: :stocks
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
