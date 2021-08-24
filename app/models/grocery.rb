@@ -2,6 +2,7 @@ class Grocery < ApplicationRecord
   belongs_to :user
   has_many :grocery_products, dependent: :destroy
   has_many :products, through: :grocery_products
+  
 
 
   # black magic 
@@ -68,16 +69,38 @@ class Grocery < ApplicationRecord
   end
 
   def get_best_path
-    # list de course initiale
+    # liste des fermes 1
+    # boucle sur cette liste (condition d'arret = dernière ferme)
+      # get all products possible
+      liste des fermes
+
+
+
+
+
+    # -- list de course initiale
     grocery_product_list = self.available_products
-    # liste de travail des produits restant à acheter 
+    # -- liste des produits non disponible
+    unavailable_products = self.products - grocery_product_list
+    # -- liste de travail des produits restant à acheter 
     products_left_to_buy = grocery_product_list
-    # puts "produits à acheter: #{products_left_to_buy.count}"
-    # puts products_left_to_buy.map{ |a| a.name}
-    # liste de travail qui va stocker les achats aux differentes fermes
+    puts "produits à acheter: #{products_left_to_buy.count}"
+    puts products_left_to_buy.map{ |a| a.name}
+    # -- liste de travail qui va stocker les achats aux differentes fermes
     list_achats = []
-    # liste de travail qui stockera la suites de coordonnees
+    # -- liste des differentes fermes
+    list_farms = []
+    # -- liste de travail qui stockera la suites de coordonnees
     trajet = []
+    puts self.start_address
+    start_coordinates = Geocoder.search(self.start_address).first.coordinates.reverse
+    trajet << start_coordinates
+    # -- creation de la première liste de ferme
+
+    # -- boucle de la mort
+    puts "debut de boucle"
+    until products_left_to_buy.size == 0 do
+    end
   end
 
   def self.generating_random(nbr)
