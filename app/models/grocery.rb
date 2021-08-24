@@ -42,7 +42,7 @@ class Grocery < ApplicationRecord
       puts "trajet: #{trajet.count}"
       puts trajet
       # add farm id to list of farms
-      list_farms << farm.id
+      list_farms << farm
       # buy all you need
       achats = farm.buy_all_products_needed(products_left_to_buy)
       puts "achats: #{achats.count}"
