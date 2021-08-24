@@ -53,34 +53,10 @@ else
 end
 
 # generating a grocery
-puts "creating groceries"
-4.times do
-  # creer une course
-  grocery = Grocery.new(
-    user_id: User.all.sample.id,
-    start_address: [
-      "Chem. du Closel 5, 1020 Renens",
-      "Av. des Mousquines, 1005 Lausanne",
-      "Quai Perdonnet 19, 1800 Vevey",
-      "Rue du Sablon 2, 1110 Morges",
-      "Place de la Palud 2 · 1003 Lausanne",
-      "Rue du Simplon 16, 1800 Vevey"
-    ].sample,
-    end_address: [
-      "Chem. de Publoz 32, 1070 Puidoux",
-      "chemin du Pré de l'Essert 6, 1072 Forel (Lavaux)",
-      "Chem. de la Villaire 10, 1040 Echallens",
-      "Chem. Prés-du-Dimanche 16, 1304 Cossonay",
-      "12C Chemin de beree, 1010 Lausanne"
-    ].sample
-  ).save
-  # y ajouter des produits
-  products = Product.all.sample(5)
-  grocery = Grocery.all.last
-  products.each do |p|
-    GroceryProduct.new(
-      grocery_id: grocery.id,
-      product_id: p.id
-    ).save
-  end
+nbr_groceries = Grocery.all.count
+if nbr_groceries == 0
+  puts "creating groceries"
+  Grocery.generating_random(4)
+else
+  puts "#{nbr_groceries} groceries already existing"
 end

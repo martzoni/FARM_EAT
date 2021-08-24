@@ -75,4 +75,36 @@ class Grocery < ApplicationRecord
     trajet = []
   end
 
+  def self.generating_random(nbr)
+    nbr.times do
+      # creer une course
+      grocery = Grocery.new(
+        user_id: User.all.sample.id,
+        start_address: [
+          "Chemin du Closel 5, 1020 Renens",
+          "Av. des Mousquines, 1005 Lausanne",
+          "Quai Perdonnet 19, 1800 Vevey",
+          "Rue du Sablon 2, 1110 Morges",
+          "Place de la Palud 2 · 1003 Lausanne",
+          "Rue du Simplon 16, 1800 Vevey"
+        ].sample,
+        end_address: [
+          "Chemin de Publoz 32, 1070 Puidoux",
+          "chemin du Pré de l'Essert 6, 1072 Forel (Lavaux)",
+          "Chemin de la Villaire 10, 1040 Echallens",
+          "Chemin Prés-du-Dimanche 16, 1304 Cossonay",
+          "12C Chemin de beree, 1010 Lausanne"
+        ].sample
+      ).save
+      # y ajouter des produits
+      products = Product.all.sample(5)
+      grocery = Grocery.all.last
+      products.each do |p|
+        GroceryProduct.new(
+          grocery_id: grocery.id,
+          product_id: p.id
+        ).save
+      end
+    end
+  end
 end
