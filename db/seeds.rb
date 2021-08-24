@@ -8,124 +8,55 @@
 require 'open-uri'
 require 'nokogiri'
 require 'faker'
+# require 'csv'
+
+
+# Creation des users
+# if User.all.count == 0
+#   if 
+
+# creation des produits
 
 # Start seeding
 puts "Cleaning database..."
-Farm.destroy_all
-User.destroy_all
-Product.destroy_all
+# Product.destroy_all
+# User.destroy_all
+# Stock.destroy_all
+# Distance.destroy_all
+# Farm.destroy_all
 Grocery.destroy_all
-Stock.destroy_all
 
 # creating products
-puts "Parsing for products..."
-url_product = "https://www.conservation-nature.fr/food/fruits/"
-
-html_content_product = URI.open(url_product).read
-doc_product = Nokogiri::HTML(html_content_product)
-
-doc_product.search('.int-plante-tab h3').each do |element|
-  Product.new(name: element.text.strip).save
+nbr_products = Product.all.count
+if nbr_products == 0
+  Product.fruits_scraping
+  Product.legumes_scraping
+else
+  puts "#{nbr_products} products already existing"
 end
 
 # creating users
-puts "Creating 3 users..."
-user = User.new(
-  name: "Martin",
-  email: "martin@gmail.com",
-  password: "123456",
-  is_farmer: false
-)
-user.save!
-user = User.new(
-  name: "Pablo",
-  email: "pablo@gmail.com",
-  password: "123456",
-  is_farmer: false
-)
-user.save!
-user = User.new(
-  name: "Oscar",
-  email: "oscar@gmail.com",
-  password: "123456",
-  is_farmer: false
-)
-user.save!
-
-# creating more users
-puts "Creating 15 farmers..."
-
-15.times do
-  user_name = Faker::Name.unique.first_name
-  # puts user_name
-  user = User.new(
-    name: user_name,
-    email: "#{user_name}@hotmail.com",
-    password: "123456",
-    is_farmer: true,
-    address: ["Pl. de la Navigation 3, 1006 Lausanne", "Bouveret1897 Port-Valais", "Quai Perdonnet 19, 1800 Vevey", "Quai de Cologny 1, 1223 Cologny", "12C Chemin de beree, 1010 Lausanne", "Chemin des Esserts 5, 1024 Ecublens", "Place de la Palud 2 · 1003 Lausanne", "Rue du Simplon 16, 1800 Vevey", "Case Postale 1125, 1001 Lausanne", "Ouchy 60, 1006 Lausanne", "Grand' Rue 73, 1820 Montreux", "Av. de la Gare 33, 1618 Châtel-Saint-Denis", "Rte de Lausanne 16, 1052 Le Mont-sur-Lausanne", "Pl. de l'Hôtel-de-Ville 1, 1110 Morges", "Pl. du Château 3, 1260 Nyon"].sample)
-  user.save!
+nbr_users = User.all.count
+if nbr_users == 0
+  User.generating_the_team
+  User.generating_random(15)
+else
+  puts "#{nbr_users} users already existing"
 end
 
 # creating farms
-puts "Parsing for farms..."
-url_farm = "https://www.marchepaysan.ch/index.php/producteur"
-
-html_content_farm = URI.open(url_farm).read
-doc_farm = Nokogiri::HTML(html_content_farm)
-
-doc_farm.search('.item-name').each do |card_info|
-  f = Farm.new()
-  f.name = card_info.search('span')[1].text
-  link = card_info.css('a').attribute('href')
-
-  html_content_details = URI.open(link).read
-  doc_details = Nokogiri::HTML(html_content_details)
-
-  f.address = doc_details.search('.company-info-details p').text.strip
-  f.phone = doc_details.search('.company-info-details .phone a').text.strip
-  attributes = doc_details.search('.listing-attributes')
-  content_attributes = attributes.map do |att|
-    "#{att.search('.attribute-name').text.strip.delete "\r"} #{att.search('.attribute-item').text.strip.delete "\r"}"
-  end
-  f.content = content_attributes.join("\r")
-  # f.content = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At numquam debitis, ex dolor nobis, tempora accusantium repudiandae quo vitae officia distinctio asperiores sed esse blanditiis iure sit, vero sapiente ea."
-  f.user_id = User.all.sample.id
-  f.email = f.user.email
-  file = URI.open('http://loremflickr.com/800/600/farm')
-  f.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
-  # puts f
-  f.save
-end
-
-# creating stock
-puts "generating stocks"
-Farm.all.each do |farm|
-  Product.all.sample(10 + rand(30)).each do |product|
-    Stock.new(
-      farm_id: farm.id,
-      product_id: product.id
-    ).save
-  end
+nbr_farms = Farm.all.count
+if nbr_farms == 0
+  Farm.scraping
+else
+  puts "#{nbr_farms} farms already existing"
 end
 
 # generating a grocery
-puts "creating groceries"
-5.times do
-  # creer une course
-  grocery = Grocery.new(
-    user_id: User.all.sample.id,
-    start_address: ["Pl. de la Navigation 3, 1006 Lausanne", "Bouveret1897 Port-Valais", "Quai Perdonnet 19, 1800 Vevey", "Quai de Cologny 1, 1223 Cologny", "12C Chemin de beree, 1010 Lausanne", "Chemin des Esserts 5, 1024 Ecublens", "Place de la Palud 2 · 1003 Lausanne", "Rue du Simplon 16, 1800 Vevey", "Case Postale 1125, 1001 Lausanne", "Ouchy 60, 1006 Lausanne", "Grand' Rue 73, 1820 Montreux", "Av. de la Gare 33, 1618 Châtel-Saint-Denis", "Rte de Lausanne 16, 1052 Le Mont-sur-Lausanne", "Pl. de l'Hôtel-de-Ville 1, 1110 Morges", "Pl. du Château 3, 1260 Nyon"].sample,
-    end_address: ["Pl. de la Navigation 3, 1006 Lausanne", "Bouveret1897 Port-Valais", "Quai Perdonnet 19, 1800 Vevey", "Quai de Cologny 1, 1223 Cologny", "12C Chemin de beree, 1010 Lausanne", "Chemin des Esserts 5, 1024 Ecublens", "Place de la Palud 2 · 1003 Lausanne", "Rue du Simplon 16, 1800 Vevey", "Case Postale 1125, 1001 Lausanne", "Ouchy 60, 1006 Lausanne", "Grand' Rue 73, 1820 Montreux", "Av. de la Gare 33, 1618 Châtel-Saint-Denis", "Rte de Lausanne 16, 1052 Le Mont-sur-Lausanne", "Pl. de l'Hôtel-de-Ville 1, 1110 Morges", "Pl. du Château 3, 1260 Nyon"].sample
-  ).save
-  # y ajouter des produits
-  products = Product.all.sample(5)
-  grocery = Grocery.all.last
-  products.each do |p|
-    GroceryProduct.new(
-      grocery_id: grocery.id,
-      product_id: p.id
-    ).save
-  end
+nbr_groceries = Grocery.all.count
+if nbr_groceries == 0
+  puts "creating groceries"
+  Grocery.generating_random(4)
+else
+  puts "#{nbr_groceries} groceries already existing"
 end
-
