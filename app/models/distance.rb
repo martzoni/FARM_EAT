@@ -1,8 +1,9 @@
 require './app/other_methods.rb'
 
 class Distance < ApplicationRecord
-  # belongs_to :farm_a, class_name: 'Farm', foreign_key: 'farm_a_id', optional: true, dependent: :destroy
-  # belongs_to :farm_b, class_name: 'Farm', foreign_key: 'farm_b_id', optional: true, dependent: :destroy
+  belongs_to :farm_a, class_name: 'Farm'
+  belongs_to :farm_b, class_name: 'Farm'
+  # , foreign_key: 'farm_a_id'
 
   def self.tying_up_with_the_others(farm_b)
     Farm.all.each do |farm_a|
