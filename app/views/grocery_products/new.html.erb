@@ -1,4 +1,4 @@
-<div class="container form-background" style="margin-top: 70px; max-width: 480px;">  
+<div class="container form-background" style="margin-top: 8em; max-width: 480px;">  
   <%= simple_form_for [@grocery, @grocery_product], method: "post", remote: true do |f| %>
     <%= f.association :product, label: false, prompt: 'Ajouter un produit', collection: @products.order(:name)-@grocery.products.order(:name), input_html: { class: "input-search" } %>
     <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
