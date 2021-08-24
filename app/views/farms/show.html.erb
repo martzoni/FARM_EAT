@@ -1,30 +1,46 @@
 <div class="img-show" style="background-image: linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.20)), url(<%= @farm.photo.attached? ? cl_image_path(@farm.photo.key) : asset_path('list_background.png') %>)">
     <h1><%= @farm.name.capitalize %></h1>
 </div>
-
-<div id="map2" class="contain"></div>
-
-
 <div class="container my-5">
+
   <div class="d-flex justify-content-between" >
     <div>
       <%= link_to "Retour à la liste", request.referer.present? ? request.referer : farms_path, class: "btn btn-clr btn-lg"  %>
     </div>
     <div class="d-flex justify-content-end">
       <% if @farm.user == current_user %>
-        <%= link_to "Supprimer", farm_path(@farm), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-1'%>
+        <%= link_to "Supprimer la ferme", farm_path(@farm), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-clr orange mr-2'%>
       <% end %>
       <% if @farm.user == current_user %>
-        <%= link_to "Mettre à jour la ferme!",  edit_farm_path(@farm), class: "btn btn-clr orange" %>
+        <%= link_to "Mettre à jour la ferme",  edit_farm_path(@farm), class: "btn btn-clr orange mr-2" %>
+      <% end %>
+      <% if current_user == @farm.user %>
+        <%= link_to "Gerer ses produits", new_farm_stock_path(@farm), class: 'btn btn-clr orange'%>
       <% end %>
     </div>
-  </div>
+  </div> 
+  
+
+  <div class="my-4 show-info d-block" style="padding: 40px;">
+    <div class="mb-4">
+      <% if @farm.user != current_user %>
+        <h2>Nous avons :</h2>
+      <% else %>  
+        <h2>Mes produits :</h2>
+      <% end %>
+    </div>
+    <div style="width: 100%; flex-wrap: nowrap | wrap | wrap-reverse;">
+      <% @farm.products.order(:name).each do |product| %>
+        <span class="product-tag"><%= product.name %></span>
+      <% end %>
+    </div>
+  </div> 
   <div class="my-4 show-info">
     <div style="width: 50%; padding: 40px;">
     <% if @farm.user != current_user %>
-      <h2>Details de la ferme</h2>
+      <h2 class="mb-4">Details de la ferme</h2>
     <% else %>  
-      <h2>Voici ma ferme!</h2>
+      <h2 class="mb-4">Voici ma ferme</h2>
     <% end %>
     
       <h6 class="mt-2"><strong>Nom : </strong><%= @farm.name.capitalize %></h6>
@@ -41,21 +57,4 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div> 
   </div>
-  <div>
-    <div class="d-flex justify-content-between" >
-    <% if @farm.user != current_user %>
-      <h2>Nous avons!</h2>
-    <% else %>  
-      <h2>Mes produits!</h2>
-    <% end %>
-    <% if current_user == @farm.user %>
-      <%= link_to "Gerer ses produits", new_farm_stock_path(@farm), class: 'btn btn-clr orange mr-1'%>
-    <% end %>
-  </div>
-    <div class="my-4 show-info">
-    <div style="width: 100%; padding: 20px; flex-wrap: nowrap | wrap | wrap-reverse;">
-      <% @farm.products.each do |product| %>
-        <span class="product-tag"><%= product.name %></span>
-      <% end %>
-  </div> 
 </div>
