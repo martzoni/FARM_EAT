@@ -19,11 +19,11 @@ require 'faker'
 
 # Start seeding
 puts "Cleaning database..."
-# Product.destroy_all
-# User.destroy_all
-# Stock.destroy_all
-# Distance.destroy_all
-# Farm.destroy_all
+Distance.destroy_all
+Product.destroy_all
+User.destroy_all
+Farm.destroy_all
+Stock.destroy_all
 Grocery.destroy_all
 
 # creating products

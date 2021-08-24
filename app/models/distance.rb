@@ -12,7 +12,7 @@ class Distance < ApplicationRecord
         distance.farm_b_id = farm_b.id
         # puts farm_a.coordinates
         # puts farm_b.coordinates
-        trajet_mapbox = distance_mapbox(farm_a.coordinates, farm_b.coordinates)
+        trajet_mapbox = distance_mapbox(farm_a.coordinates_2, farm_b.coordinates_2)
         if trajet_mapbox == nil
           distance = nil
           puts "error while creating distance between farms"
