@@ -48,7 +48,7 @@ class GroceriesController < ApplicationController
   private
 
   def grocery_params
-  params.require(:grocery).permit(:start_address)
+  params.require(:grocery).permit(:start_address, :end_address)
   end
   
   # require 'open-uri'
