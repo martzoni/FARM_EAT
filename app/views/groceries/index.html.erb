@@ -1,26 +1,21 @@
-<div class="container" style="margin-top: 70px">
-  <div class="container mx-auto" id="farm-list">
-    <h1 class="my-5 list-title">Mes courses</h1>
-  </div>
-
-  <div class="container" style="margin-top: 2em">
-    <% @my_groceries.each do |list| %>
-      <div class="my-farm-info">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="justify-content-flex-start">
-            <%# <h4 class="mt-2"><strong>man course </strong> <%= list.id</h4> %>
-            <%# <h4 class="mt-2"><strong>le </strong><%= list.created_at.strftime("%d/%m/%Y") %>
-            <%# <h4 class="mt-2"><strong>produits </strong></h4> %>
-            <h4 class="">le <%= list.created_at.strftime("%d/%m/%Y") %> je voulais les produits suivants, </h4>
-            <% list.products.each do |product| %>
-              <span class="product-tag"><%= product.name %></span>
-            <% end %>
-          </div>
-          <div>
-            <%= link_to grocery_path(list), class:'text-decoration-none' do %>
-            <%= image_tag "map.png", style: "background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)); padding: 4px; height: 200px; width 600px;" %>
-            <% end %>
-          </div>
+<div style="margin-top: 8em; margin-left: 10%; margin-right: 10%">
+  <h1 class="my-5 list-title">Mes courses</h1>
+  <div>
+    <% @my_groceries.sort_by(&:created_at).to_enum.with_index.reverse_each do |list, i| %>
+      <div class="my-farm-info" >
+        <div class="flex-grow-1">
+          <div class="grocery-info ">
+            <h5><%= i+1 %>#</h5>
+            <h6><span style="color: #a2a2a2;">Addresse: </span><%= list.created_at.strftime("%d/%m/%Y") %></h6>
+            <h6><span style="color: #a2a2a2;">Départ: </span><%= list.start_address %></h6>
+            <h6><span style="color: #a2a2a2;">Arrivée: </span><%= list.start_address %></h6>
+          </div><span></span>
+          <% list.products.order(:name).each do |product| %>
+            <span class="product-tag"><%= product.name %></span>
+          <% end %>
+        </div>
+        <div class="mr-3 ml-5">
+          <%= link_to "voir", grocery_path(list), class:'text-decoration-none btn-clr fixed btn-lg'%>
         </div>
       </div>
     <% end %>

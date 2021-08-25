@@ -4,7 +4,7 @@ class GroceriesController < ApplicationController
 
   def index
     @groceries = Grocery.all
-    @my_groceries = current_user.groceries
+    @my_groceries = current_user.groceries.select{ |grocery| grocery.start_address != nil }
   end
 
   def show

@@ -18,7 +18,7 @@
       <p class="farm-address"><strong>Addresse : </strong><%= farm.address %></p>
       <ul>
         <%@achats[i-1].each do |product| %>
-          <li><p><%= product.name %></p></li>
+          <li><h6><%= product.name %></h6></li>
         <% end %>
         </ul>
       <% end %>
@@ -28,11 +28,11 @@
       </div>
     </div>
     <% if @unavailable_products.count != 0 %>
-      <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; width: 90%;">
+      <div style="padding-left: 30px; padding-right: 30px; padding-top: 30px; width: 90%;">
         <h6>Produits introuvables</h6>
         <ul>
           <% @unavailable_products.each do |product| %>
-            <li><p><%= product.name %></p></li>
+            <li><h6><%= product.name %></h6></li>
           <% end %>
         </ul>
       </div>
