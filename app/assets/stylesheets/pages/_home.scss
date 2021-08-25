@@ -38,11 +38,12 @@
 .how-to {
   padding: 20px;
   width: 260px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
-  background-color: #f874362a;
+  justify-content: start;
+  background-color: #eeeeee;
   border-radius: 50%;
 }
 
@@ -50,7 +51,7 @@
   padding-top: 40px;
   text-align: center;
   font-family: 'Caveat', cursive;
-  color: rgb(20, 20, 20);
+  color: #f87436;
   font-size: 26px;
 }
 
