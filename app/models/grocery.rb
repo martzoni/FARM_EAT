@@ -34,7 +34,11 @@ class Grocery < ApplicationRecord
   end
   
   def get_a_better_path(range = 25)
-    farms_in_range = Farm.near(self.start_address, range)
+    if self.end_address == nil
+      farms_in_range = Farm.near(self.start_address, range)
+    else
+      farms_in_range = Farm.near(self.start_address, range).to_a.union(Farm.near(self.end_address, range))
+    end
     # -- list de course initiale
     # puts "-------"
     # puts self.products.size
