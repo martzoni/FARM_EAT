@@ -14,7 +14,7 @@
         <p><%= @grocery.start_address %></p>
       </div>
       <% @farms.each_with_index do |farm, i| %>
-      <h5><%= i+1 %>. 🧺 <%= farm.name %></h5>
+      <h5><%= i+1 %>. 🧺 <%= link_to farm.name, farm_path(farm), style: "color: #FF641B" %></h5>
       <p class="farm-address"><strong>Addresse : </strong><%= farm.address %></p>
       <ul>
         <%@achats[i-1].each do |product| %>
