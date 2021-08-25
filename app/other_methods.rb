@@ -18,3 +18,10 @@ def distance_mapbox(coord_a, coord_b)
     return nil
   end
 end
+
+def generate_google_maps_url(grocery, farms)
+  # chemin%20du%20Closel%205,%20Renens/Route%20de%20la%20Goille%2013,%20Savigny/Sur%20Broye,%20Bossonnens/Rue%20Blanchoud%204,%20Vevey
+  waypoints = farms.empty? ? "" : farms.map{ |e| "#{e.address}/" }.join
+  addresses = "#{grocery.start_address}/#{waypoints}#{grocery.end_address}"
+  return "https://www.google.ch/maps/dir/#{addresses}"
+end
