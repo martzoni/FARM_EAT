@@ -66,6 +66,8 @@ class Grocery < ApplicationRecord
     list_farms = []
     # -- liste de travail qui stockera la suites de coordonnees
     trajet = []
+    trajet_km = 0.0
+    trajet_minutes = 0.0
     # puts self.start_address
     start_coordinates = Geocoder.search(self.start_address).first.coordinates.reverse
     trajet << start_coordinates
@@ -77,9 +79,13 @@ class Grocery < ApplicationRecord
       farm = Farm.available_farms_in_range(products_left_to_buy, farms_in_range).first
       # puts "farm id: #{farm.id}"
       # puts farm.products.map{ |a| a.name}
+      # -- ajout des données du trajet
+      distance_temp = distance_mapbox(trajet.last, farm.coordinates_2)
+      trajet_km += distance_temp[0]
+      trajet_minutes += distance_temp[1]
       # -- add farm coordinates to trajet (si les coordonees ne sont pas nulles)
       # puts farm.coordinates_2
-      trajet << farm.coordinates_2 unless farm.coordinates_2 == nil
+      trajet << farm.coordinates_2
       # puts "etapes de trajet: #{trajet.count}"
       # puts trajet
       # -- add farm id to list of farms
@@ -103,8 +109,11 @@ class Grocery < ApplicationRecord
     else
       end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
     end
+    distance_temp = distance_mapbox(trajet.last, end_coodinates)
+    trajet_km += distance_temp[0]
+    trajet_minutes += distance_temp[1]
     trajet << end_coodinates
-    resultat = [trajet, list_farms, list_achats, unavailable_products]
+    resultat = [trajet, list_farms, list_achats, unavailable_products, trajet_km, trajet_minutes]
     return resultat
   end
 
