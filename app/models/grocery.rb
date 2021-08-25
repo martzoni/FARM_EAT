@@ -34,10 +34,16 @@ class Grocery < ApplicationRecord
   end
   
   def get_a_better_path(range = 25)
-    if self.end_address == nil
-      farms_in_range = Farm.near(self.start_address, range)
-    else
-      farms_in_range = Farm.near(self.start_address, range).to_a.union(Farm.near(self.end_address, range))
+    farms_in_range = Farm.near(self.start_address, range).to_a
+    if self.start_address != self.end_address
+      farms_in_range = farms_in_range.union(Farm.near(self.end_address, range).to_a)
+      start_coordinates = Geocoder.search(self.start_address).first.coordinates.reverse
+      end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
+      distance_min = distance_mapbox(start_coordinates, end_coodinates)[0]
+      if distance_min >= range * 1.8
+        point_milieu = [(start_coordinates[0] + end_coodinates[0]) / 2, (start_coordinates[1] + end_coodinates[1]) / 2]
+        farms_in_range = farms_in_range.union(Farm.near(point_milieu, (distance_min - range) / 2).to_a)
+      end
     end
     # -- list de course initiale
     # puts "-------"
@@ -159,7 +165,7 @@ class Grocery < ApplicationRecord
 
   def get_best_path
     # liste des fermes 1
-    # boucle sur cette liste (condition d'arret = dernière ferme)
+    # boucle sur cette liste (condition d'arret = dernière ferme de la liste)
       # get all products possible
       liste des fermes
 
