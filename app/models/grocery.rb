@@ -34,7 +34,16 @@ class Grocery < ApplicationRecord
   end
   
   def get_a_better_path(range = 25)
-    farms_in_range = Farm.near(self.start_address, range)
+    farms_in_range = Farm.near(self.start_address, range).to_a
+    if self.start_address != self.end_address
+      farms_in_range = farms_in_range.union(Farm.near(self.end_address, range))
+      start_coordinates = self.start_address.coordinates_2
+      end_coodinates = self.end_address.coordinates_2
+      distance_min = distance_mapbox(start_coordinates, end_coodinates)
+      if distance_min >= range * 1.8
+        point_milieu = [(start_coordinates[0] + end_coodinates[0]) / 2, (start_coordinates[1] + end_coodinates[1]) / 2] 
+      end
+    end
     # -- list de course initiale
     # puts "-------"
     # puts self.products.size
@@ -155,7 +164,7 @@ class Grocery < ApplicationRecord
 
   def get_best_path
     # liste des fermes 1
-    # boucle sur cette liste (condition d'arret = dernière ferme)
+    # boucle sur cette liste (condition d'arret = dernière ferme de la liste)
       # get all products possible
       liste des fermes
 
