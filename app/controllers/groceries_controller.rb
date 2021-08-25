@@ -8,8 +8,9 @@ class GroceriesController < ApplicationController
   end
 
   def show
+    range = 20
     @grocery = Grocery.find(params[:id])
-    @resultat = @grocery.get_a_path
+    @resultat = @grocery.get_a_better_path(range)
     @trajet = @resultat[0]
     @farms = @resultat[1]
     @achats = @resultat[2]

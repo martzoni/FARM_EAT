@@ -21,7 +21,7 @@ class Distance < ApplicationRecord
           distance.km = trajet_mapbox[0]
           distance.minutes = trajet_mapbox[1]
           distance.save!
-          puts "distance created"
+          # puts "distance created"
         end
       end
     end
