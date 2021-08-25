@@ -27,7 +27,8 @@ Grocery.destroy_all
 # creating products
 nbr_products = Product.all.count
 if nbr_products == 0
-  Product.fruits_scraping
+  # Product.fruits_scraping
+  Product.fruits_seeding
   Product.legumes_scraping
 else
   puts "#{nbr_products} products already existing"

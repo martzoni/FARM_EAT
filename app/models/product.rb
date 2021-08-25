@@ -21,6 +21,28 @@ class Product < ApplicationRecord
       self.new(name: element.text.strip, category: "fruit").save
     end
   end
+  
+  def self.fruits_seeding
+    puts "creating fruits"
+    fruits = [
+      "Abricot",
+      "Cerise",
+      "Groseille rouge",
+      "Fraise",
+      "Framboise",
+      "Maquereau",
+      "Mûre",
+      "Nectarine",
+      "Pêche",
+      "Poire",
+      "Pomme",
+      "Pruneau"
+    ]
+    fruits.each do |name|
+      self.new(name: name, category: "fruit").save
+    end
+  end
+  
 
   def self.legumes_scraping
     puts "Parsing for products (légumes)..."

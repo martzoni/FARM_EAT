@@ -44,6 +44,12 @@ class Grocery < ApplicationRecord
         point_milieu = [(start_coordinates[0] + end_coodinates[0]) / 2, (start_coordinates[1] + end_coodinates[1]) / 2] 
       end
     end
+    
+    if self.end_address == nil
+      farms_in_range = Farm.near(self.start_address, range)
+    else
+      farms_in_range = Farm.near(self.start_address, range).to_a.union(Farm.near(self.end_address, range))
+    end
     # -- list de course initiale
     # puts "-------"
     # puts self.products.size

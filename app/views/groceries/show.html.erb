@@ -1,36 +1,43 @@
 <%# <% markers = [[6.373300938261586, 46.6743794], [6.177820977711894,46.40861365], [6.445665966333003, 46.6824071], [6.5252453, 46.6113262], [6.9334427, 46.2881923]]  %> 
 
 
-<div class="d-flex justify-content-between align-items-center">
-  <div id="map2"
-       style="width: 70%; height: 100vh; ; z-index: 9; transition: 0.2s;"
-       data-markers='<%= @trajet %>'
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-  <div class="d-flex justify-content-center align-items-center flex-column flex-grow-1">
-  <div class="mb-3">
-    <h6>Votre course au départ de :</h6> 
-    <p>🏁 <%= @grocery.start_address %></p>
-  </div> 
-  <div class="card-grocery">
-    <% @farms.each_with_index do |farm, i| %>
-     <h4><%= farm.name %></h4>
-     <ul>
-      <% @achats[i-1].each do |product| %>
-        <li><p><%= product.name %></p></li>
+<div id="map2"
+      style="width: 60%; height: 100vh; ; z-index: 9; transition: 0.2s; position: fixed; left:0px;, top: 0px;"
+      data-markers='<%= @trajet %>'
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+<div class="d-flex justify-content-end align-items-center">
+  <div class="d-flex justify-content-center align-items-center flex-column flex-grow-1" style="max-width: 40%; margin-top: 10vh; margin-bottom: 10vh;">
+    <div class="card-grocery">
+      <div class="mb-5">
+        <h5>🟢 Votre départ de :</h5> 
+        <p><%= @grocery.start_address %></p>
+      </div>
+      <% @farms.each_with_index do |farm, i| %>
+      <h5><%= i+1 %>. 🧺 <%= farm.name %></h5>
+      <p class="farm-address"><strong>Addresse : </strong><%= farm.address %></p>
+      <ul>
+        <%@achats[i-1].each do |product| %>
+          <li><h6><%= product.name %></h6></li>
+        <% end %>
+        </ul>
       <% end %>
-      </ul>
-    <% end %>
-      <% if @unavailable_products.count != 0 %>
+      <div class="mt-5">
+        <h5>🏁 Votre arrivée à :</h5> 
+        <p><%= @grocery.end_address %></p>
+      </div>
+    </div>
+    <% if @unavailable_products.count != 0 %>
+      <div style="padding-left: 30px; padding-right: 30px; padding-top: 30px; width: 90%;">
         <h6>Produits introuvables</h6>
         <ul>
           <% @unavailable_products.each do |product| %>
-            <li><p><%= product.name %></p></li>
+            <li><h6><%= product.name %></h6></li>
           <% end %>
         </ul>
-      <% end %>
-    <%= link_to "Modifier ma liste de courses", new_grocery_grocery_product_path(@grocery), class: "btn-clr fixed mt-3" %>
-  </div>
+      </div>
+    <% end %>
+    <%= link_to "Modifier ma liste de courses", new_grocery_grocery_product_path(@grocery), class: "btn-clr fixed mt-3", style: "width: 90%;" %>
 
   </div>
 
