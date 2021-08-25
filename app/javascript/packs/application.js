@@ -28,7 +28,7 @@ import "bootstrap";
 // map scroll effect
 import { onScroll } from '../plugins/on_scroll';
 
-import { initAutocomplete } from '../plugins/init_autocomplete';
+import { initAutocomplete, initAutocompleteEndAddress } from '../plugins/init_autocomplete';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -45,6 +45,7 @@ document.addEventListener('turbolinks:load', () => {
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
+  initAutocompleteEndAddress();
 });
 
 import { initJourneyMapbox } from '../plugins/journey_mapbox';
