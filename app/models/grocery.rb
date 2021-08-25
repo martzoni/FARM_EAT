@@ -39,18 +39,12 @@ class Grocery < ApplicationRecord
       farms_in_range = farms_in_range.union(Farm.near(self.end_address, range).to_a)
       start_coordinates = Geocoder.search(self.start_address).first.coordinates.reverse
       end_coodinates = Geocoder.search(self.end_address).first.coordinates.reverse
-      distance_min = distance_mapbox(start_coordinates, end_coodinates)
+      distance_min = distance_mapbox(start_coordinates, end_coodinates)[0]
       if distance_min >= range * 1.8
         point_milieu = [(start_coordinates[0] + end_coodinates[0]) / 2, (start_coordinates[1] + end_coodinates[1]) / 2]
         farms_in_range = farms_in_range.union(Farm.near(point_milieu, (distance_min - range) / 2).to_a)
       end
     end
-
-    # if self.end_address == nil
-    #   farms_in_range = Farm.near(self.start_address, range)
-    # else
-    #   farms_in_range = Farm.near(self.start_address, range).to_a.union(Farm.near(self.end_address, range))
-    # end
     # -- list de course initiale
     # puts "-------"
     # puts self.products.size
