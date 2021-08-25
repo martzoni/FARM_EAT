@@ -19,8 +19,8 @@ require 'faker'
 
 # Start seeding
 puts "Cleaning database..."
-# Product.destroy_all
-# User.destroy_all
+Product.destroy_all
+User.destroy_all
 Farm.destroy_all
 Grocery.destroy_all
 
@@ -54,7 +54,7 @@ end
 nbr_groceries = Grocery.all.count
 if nbr_groceries == 0
   puts "creating groceries"
-  Grocery.generating_random(4)
+  Grocery.generating_random(5)
 else
   puts "#{nbr_groceries} groceries already existing"
 end

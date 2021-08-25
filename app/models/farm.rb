@@ -103,9 +103,9 @@ class Farm < ApplicationRecord
       if farm_a.coordinates_2 == nil
         # puts "in here"
         farm_a.destroy
-        # puts "invalid address"
+        puts "invalid address"
       else
-        # puts "address is valid. proceeding..."
+        puts "address is valid. proceeding..."
         # creating stock
         Stock.generating_random(farm_a, (30..60))
         # creating distances
