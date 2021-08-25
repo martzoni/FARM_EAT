@@ -7,4 +7,11 @@ const initAutocomplete = () => {
   }
 };
 
-export { initAutocomplete };
+const initAutocompleteEndAddress = () => {
+  const addressInput = document.getElementById('address-input-end');
+  if (addressInput) {
+    places({ container: addressInput });
+  }
+};
+
+export { initAutocomplete, initAutocompleteEndAddress };
