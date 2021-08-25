@@ -34,3 +34,34 @@
   font-size: 34px;
   text-shadow: 1px 3px 6px rgba(0,0,0,0.5);
 }
+
+.how-to {
+  padding: 20px;
+  width: 260px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.how-to > h6 {
+  padding-top: 40px;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  color: #f87436;
+  font-size: 26px;
+}
+
+.how-to > img {
+  object-fit: fill;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.img_preview {
+  width: 100% !important;
+}
