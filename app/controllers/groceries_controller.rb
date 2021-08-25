@@ -1,5 +1,6 @@
+require './app/other_methods.rb'
+
 class GroceriesController < ApplicationController
-  # load '../algorithms/get_a_path.rb'
   before_action :authenticate_user!, only: [:new, :create, :my_groceries]
 
   def index
