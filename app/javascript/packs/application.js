@@ -29,6 +29,9 @@ import "bootstrap";
 import { onScroll } from '../plugins/on_scroll';
 
 import { initAutocomplete, initAutocompleteEndAddress } from '../plugins/init_autocomplete';
+
+import { initHowItWorks } from '../plugins/init_how_it_works';
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -46,6 +49,7 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
   initAutocompleteEndAddress();
+  initHowItWorks();
 });
 
 import { initJourneyMapbox } from '../plugins/journey_mapbox';
