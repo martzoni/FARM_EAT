@@ -4,7 +4,7 @@
   </div>
 
 
-<div class="container form-background mt-1" style="margin-top: 70px; max-width: 480px;">  
+<div class="container form-background mt-1  mb-5" style="margin-top: 70px; max-width: 480px;">  
   <%= simple_form_for [@farm, @stock], method: "post", remote: true do |f| %>
     <%= f.association :product, as: :select,label: false, prompt: 'Ajouter un produit', collection: @products.order(:name)-@farm.products.order(:name), input_html: { class: "select2" } %>
     <%= f.submit "Ajouter", class: "btn btn-search", id: "submit-button" %>
