@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-center align-items-center flex-column flex-grow-1" style="max-width: 40%; margin-top: 10vh; margin-bottom: 10vh;">
     <div class="card-grocery">
       <div class="mb-5">
-        <h4 class="mb-5"> Mon trajet va me prendre environ <%= @minutes_du_trajet.round%> minutes (<%= @kilometres_du_trajet.round(2) %> km)</h4>
+        <h4 class="mb-5"> Mon trajet va me prendre environ <%= @minutes_du_trajet.round%> minutes (<%= @kilometres_du_trajet.round %> km)</h4>
         <h5>🟢 Votre départ de :</h5> 
         <p><%= @grocery.start_address %></p>
       </div>
