@@ -1,6 +1,16 @@
 .product-tag {
   color: #1C354C;
-  border: 2px solid #ff631b83 !important;
+  border: 2px solid #ff631bb7 !important;
+  border-radius: 20px;
+  padding: 0.3rem 0.6rem;
+  margin: 5px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.product-tag2 {
+  color: #1C354C;
+  border: 2px solid #66e26d !important;
   border-radius: 20px;
   padding: 0.3rem 0.6rem;
   margin: 5px;

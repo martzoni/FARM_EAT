@@ -33,9 +33,14 @@
         <h2>Mes produits :</h2>
       <% end %>
     </div>
+    
     <div style="width: 100%; flex-wrap: nowrap | wrap | wrap-reverse;">
       <% @farm.products.order(:name).each do |product| %>
-        <span class="product-tag"><%= product.name %></span>
+        <% if product.category == "légume"%>
+          <h6 class="product-tag">🥕 <%= product.name %></h6>
+        <% else %>
+          <h6 class="product-tag2">🍓 <%= product.name %></h6></li>
+        <% end %>
       <% end %>
     </div>
   </div> 
