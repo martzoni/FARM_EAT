@@ -21,6 +21,29 @@
   border-radius: 8px 0px 0px 8px;  
 }
 
+.select2-selection--single {
+  height: 48px !important;
+  padding: 10px 5px !important;
+  font: bold 15px !important;
+  border: 0 !important;
+  background: rgb(255, 255, 255)!important;
+  border-radius: 8px 0px 0px 8px !important;  
+}
+
+.select2-selection__arrow {
+  top: 12px !important;
+}
+
+.select2-results__option--highlighted{
+  background-color: #0fa05e !important;
+}
+
+.select2-dropdown {
+  border-radius: 0px 0px 8px 8px !important;
+  box-shadow: 0px 16px 16px -1px  rgba(0,0,0,0.5);
+  border: none !important;
+}
+
 .btn-search {
   border: 0;
   height: 48px;
