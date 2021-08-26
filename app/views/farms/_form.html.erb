@@ -2,21 +2,21 @@
   <%= simple_form_for @farm do |f| %>
     <div class="form-background">
       <h2 class="mb-3">Modifier ma ferme</h2>
-      <%= f.input :name, label: "Nom de la ferme",
+      <%= f.input :name, label: "Nom de la ferme", placeholder: "ex: Margerite et compagnie",
                 input_html: { class: "input-clr" },
                 label_html: { class: "label-clr" } %>
-      <%= f.input :address, label: "Adresse du point de vente", input_html: { id: "address-input", class: "input-clr"},
+      <%= f.input :address, label: "Adresse du point de vente", input_html: { id: "address-input", class: "input-clr"}, placeholder: "ex: Rte de Sommentier 58, 1688 Sommentier",
                 label_html: { class: "label-clr" } %>
-      <%= f.input :phone, label: "Téléphone",
+      <%= f.input :phone, label: "Téléphone", placeholder: "ex: +41 21 345 67 89",
                 input_html: { class: "input-clr" },
                 label_html: { class: "label-clr" } %>
-      <%= f.input :open_hours, label: "Horaire d'ouverture",
+      <%= f.input :open_hours, label: "Horaire d'ouverture", placeholder: "ex: Lu-Ve 8h00-19h00, Sa 10h00-17h00, Di fermé",
                 input_html: { class: "input-clr" },
                 label_html: { class: "label-clr" } %>
       <%= f.input :content, label: "Description de la ferme",
                 input_html: { class: "input-clr" },
                 label_html: { class: "label-clr" } %>
-      <%= f.input :web_site, label: "Site web",
+      <%= f.input :web_site, label: "Site web", placeholder: "ex: www.margerite-et-compagnie.ch",
                 input_html: { class: "input-clr" },
                 label_html: { class: "label-clr" } %>
       <%= f.input :photo, as: :file,
