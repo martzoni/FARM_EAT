@@ -16,12 +16,18 @@
       </div>
       <% @farms.each_with_index do |farm, i| %>
       <h5><%= i+1 %>. 🧺 <%= link_to farm.name, farm_path(farm), style: "color: #FF641B" %></h5>
-      <p class="farm-address"><strong>Addresse : </strong><%= farm.address %></p>
-      <ul>
+      <p class="farm-address""><strong>Addresse : </strong><%= farm.address %></p>
         <%@achats[i-1].each do |product| %>
-          <li><h6><%= product.name %></h6></li>
+          <div style="display: flex; align-items: end; margin-left: 20px;">
+            <% if product.category == "légume"%>
+              <%= image_tag("icon - legumes.jpg", width:"9% !important") %>
+              <h6 style="margin-left: 3px;"><%= product.name %></h6>
+            <% else %>
+              <%= image_tag("icon - fruits.png", width:"5% !important", margin_top: "3px;") %>
+              <h6 style="margin-left: 10px;"><%= product.name %></h6></li>
+            <% end %>
+          </div>
         <% end %>
-        </ul>
       <% end %>
       <div class="mt-5">
         <h5>🏁 Votre arrivée à :</h5> 
