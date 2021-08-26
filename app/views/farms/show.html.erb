@@ -8,7 +8,7 @@
       <% if @farm.user != current_user %>
         <%= link_to "Retour à la liste", request.referer.present? ? request.referer : farms_path, class: "btn btn-clr btn-lg"  %>
       <% else %>
-        <%= link_to "Retour à la liste", request.referer.present? ? request.referer : my_farms_path, class: "btn btn-clr btn-lg"  %>
+        <%= link_to "Retour à la liste", my_farms_path, class: "btn btn-clr btn-lg"  %>
       <% end %>
     </div>
     <div class="d-flex justify-content-end">

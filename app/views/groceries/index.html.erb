@@ -8,11 +8,17 @@
             <h5><%= i+1 %>#</h5>
             <h6><span style="color: #a2a2a2;">Addresse: </span><%= list.created_at.strftime("%d/%m/%Y") %></h6>
             <h6><span style="color: #a2a2a2;">Départ: </span><%= list.start_address %></h6>
-            <h6><span style="color: #a2a2a2;">Arrivée: </span><%= list.start_address %></h6>
-          </div><span></span>
-          <% list.products.order(:name).each do |product| %>
-            <span class="product-tag"><%= product.name %></span>
-          <% end %>
+            <h6><span style="color: #a2a2a2;">Arrivée: </span><%= list.end_address %></h6>
+          </div>
+          <div style="width: 100%; flex-wrap: nowrap | wrap | wrap-reverse;">
+            <% list.products.order(:name).each do |product| %>
+              <% if product.category == "légume"%>
+                <h6 class="product-tag">🥕 <%= product.name %></h6>
+              <% else %>
+                <h6 class="product-tag2">🍓 <%= product.name %></h6></li>
+              <% end %>
+            <% end %>
+          </div>
         </div>
         <div class="mr-3 ml-5">
           <%= link_to "voir", grocery_path(list), class:'text-decoration-none btn-clr fixed btn-lg'%>
