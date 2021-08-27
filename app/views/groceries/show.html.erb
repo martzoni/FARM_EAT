@@ -17,8 +17,8 @@
       <% @farms.each_with_index do |farm, i| %>
       <h5><%= i+1 %>. 🧺 <%= link_to farm.name, farm_path(farm), style: "color: #FF641B" %></h5>
         <div class="mb-5">
-          <p class="farm-address""><strong>Addresse : </strong><%= farm.address %></p>
-            <%@achats[i].each do |product| %>
+          <p class="farm-address"><strong>Addresse : </strong><%= farm.address %></p>
+            <%@achats[i-1].each do |product| %>
               <div style="display: flex; align-items: end; margin-left: 20px;">
                 <% if product.category == "légume"%>
                   <h6>🥕 <%= product.name %></h6>
